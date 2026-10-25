@@ -1,0 +1,43 @@
+{
+  "job": "panel",
+  "created_utc": "2026-10-12T08:11:05Z",
+  "wall_seconds": 200.506,
+  "peak_rss_mb": 755.7265625,
+  "spec_freeze": {
+    "ok": true,
+    "expected": "58fe3c9f53dda3c54c0e20c06216ff00e1411541933a23be8a9bbf8f64eead61",
+    "actual": "58fe3c9f53dda3c54c0e20c06216ff00e1411541933a23be8a9bbf8f64eead61",
+    "version": "v9.8"
+  },
+  "root": "svytmle-eif-clt-sim-v9.7-rng1",
+  "package_commit": "bf9e2eda25488866e78ba1868cefd9f41b381adb",
+  "engine_files_sha256": {
+    "R/quadrature.R": "b3ec6d0f0d8ebded1868edd8553f00fbd8e406f5dc0398178021d0261f017d96",
+    "R/nuisance_truth.R": "3c7e1ebc3f3d7377fd1993caaabf09a8ab42fd32af6381795fa9e69b866da90f",
+    "R/p0_grid.R": "5b8df98c3ba102d261be0d25fd35bbf27968c14f2c5137787a50f2e85aeb1a3b",
+    "R/remainders.R": "b14e8ce8feb928bd97a1e9adc69b16b95f02af21daf420b0dfac8632ae69857a",
+    "R/rng_streams.R": "ca344bcd08d9fb3b9b023279cc8b4b95d8a5644b54dbc761909308b17efda653",
+    "R/dgp.R": "93c33f1675d34dde38ee85fbe57d79bf0ffaf6a776cef9a165b3a3f4ab97a2e1",
+    "R/census.R": "0914b15ba2339f270cfa2ffc8c8720fb42dd34b150d7e5667a45aa1894dee09b",
+    "R/quad_rules_io.R": "9fcf26864e16df0c68ec068a5707f05549b646bb123fd9ee7509cdfeef4d2d28",
+    "R/variance.R": "17cf77fad5965cfe886234fe66d53648f38e17ac25828193350567161bb18ea6",
+    "R/controls.R": "7f4bc59aac4d3225e6f2fab2645611c7ca0822f70aaead160f432faead4f15f0",
+    "R/gates.R": "9879251aab72bbba65841ba2cb1d72a66bc5cee07a51e0abeff582315fa74e2e",
+    "R/grading.R": "dc1b0e44447bb6db9ece4e8c9fe1c5a03fa9e8ea1db6cb7deb9851464402ebef",
+    "R/run_mode.R": "8f2873e4580d433d4ddc9553c4666533579be1df6f028819398f6c165e9d42a6"
+  },
+  "runtime": {
+    "R": "R version 4.4.0 (2024-04-24)",
+    "platform": "x86_64-pc-linux-gnu"
+  },
+  "exit_status": 0,
+  "kappa_ae": {
+    "kappa": 0.13361561900194618,
+    "T2": 0.0038521888154094295,
+    "stat": 0.29999999999999999,
+    "buildable": true,
+    "content_sha256": "f59a3780ac4f466dbcbc0120f4ad73d2524ca2966202f6342e284691d865c267"
+  },
+  "reused": false,
+  "sigma_identical_if_reused": true
+}

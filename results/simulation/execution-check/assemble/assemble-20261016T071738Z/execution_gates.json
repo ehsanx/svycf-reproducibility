@@ -1,0 +1,75 @@
+{
+  "round": "round3",
+  "verdict": "PASS",
+  "reasons": [],
+  "created": "20261016T071738Z",
+  "spec_freeze": {
+    "ok": true,
+    "expected": "58fe3c9f53dda3c54c0e20c06216ff00e1411541933a23be8a9bbf8f64eead61",
+    "actual": "58fe3c9f53dda3c54c0e20c06216ff00e1411541933a23be8a9bbf8f64eead61",
+    "version": "v9.8"
+  },
+  "package_commit": "19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210",
+  "inputs": {
+    "runs": 67,
+    "package_commits": ["19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210", "bf9e2eda25488866e78ba1868cefd9f41b381adb"],
+    "code_identity_ok": true,
+    "files_changed_since_inputs": null,
+    "note": "the outputs read here were produced by the commits listed; the assembly ran in package_commit"
+  },
+  "kappa_ae_file_sha256": "ca5748d394915b72ef911482ccb3f44e03456d8d5246f29f20846cd2f263c359",
+  "gates": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G5": {
+      "alpha=0.20": false,
+      "alpha=0.25": true,
+      "alpha=0.30": true,
+      "alpha=0.35": false
+    },
+    "G6_limb_b": true,
+    "G8": true,
+    "preparation": true,
+    "provenance": true
+  },
+  "overlay": {
+    "round": "round3d",
+    "reruns": ["e3-ctrl-m400", "e3-rc-m400", "fpc-fit-J4", "fs-m100", "fs-m1600-ra2", "fs-m1600-rd", "fs-m200-ra2", "fs-m200-rd", "fs-m3200-rd", "fs-m400-ra2", "fs-m400-rd", "fs-m50", "fs-m800-ra2", "fs-m800-rd", "ms-H100", "ms-H200", "ms-H25", "ms-H400", "ms-H50", "ms-H800", "strict-m200"],
+    "reused": ["calib-J4", "e3-vsens-V2", "e3-vsens-V5", "e4-array", "fpc-or-J100", "fpc-or-J20", "fpc-or-J4", "fpc-or-J8", "fs-or-m100", "fs-or-m1600", "fs-or-m200", "fs-or-m400", "fs-or-m50", "fs-or-m800", "ms-or-H100", "ms-or-H200", "ms-or-H25", "ms-or-H400", "ms-or-H50", "ms-or-H800", "prep-census-FPC", "prep-census-FS", "prep-census-MS", "prep-g1g4", "prep-panel", "prep-summary", "strict-census", "u10-m400", "unequal-pair", "vanish-census", "wr-calib"],
+    "reused_with_compat": ["calib-J4", "e3-vsens-V2", "e3-vsens-V5", "fpc-or-J100", "fpc-or-J20", "fpc-or-J4", "fpc-or-J8", "fs-or-m100", "fs-or-m1600", "fs-or-m200", "fs-or-m400", "fs-or-m50", "fs-or-m800", "ms-or-H100", "ms-or-H200", "ms-or-H25", "ms-or-H400", "ms-or-H50", "ms-or-H800", "u10-m400", "wr-calib"],
+    "files_changed_compat": "runs/run_e2e_dev.R",
+    "revalidation": "<run-root>/simulation/engine/runs/out/round3d/reval/reval-20261016T022816Z/reval.csv"
+  },
+  "g5_ruling": {
+    "ruling": "R27",
+    "status": "DECIDED (author, 2026-10-15)",
+    "stopped": [0.20000000000000001, 0.34999999999999998],
+    "record": {
+      "file": "arc/round3d/g5-round3c.csv",
+      "md5": "fc2b576815fc41d1dbae92f10815041e",
+      "source": "runs/arc-outputs-20261012-round3c/assemble/assemble-20261012T180217Z/g5.csv (round 3c's assembly, verified 2026-10-15)"
+    },
+    "record_ok": true,
+    "retained_vs_record": ["alpha 0.25: reproduces the round-3c record", "alpha 0.30: reproduces the round-3c record"]
+  },
+  "t2_refinement": {
+    "fold_fits": 1690,
+    "triggered": 860,
+    "refined": 860,
+    "unresolved": 0,
+    "refine_seconds": 5961.0369999999994,
+    "u9_rows_unresolved": 0,
+    "policy": "PROPOSED (R/t2_refine.R)"
+  },
+  "production_forecast_core_h": 1042.4395474074074,
+  "production_expected_core_h_estimate": 712.59516490756312,
+  "production_requested_core_h": 2257.3666666666668,
+  "production_max_allocation_core_h": 2258.0333333333333,
+  "production_limit_rule": "per task: max(2 x mean forecast, 1.5 x slowest-population forecast, 10 min), dry-run basis; finalizer 40 min",
+  "forest_rhat_estimate": {
+    "c_ra_seconds_per_unit_fit": 7.2453257538052069e-06,
+    "basis_replicates": 235,
+    "status": "ESTIMATE; assumptions A1-A5 in PRODUCTION-COST.md"
+  }
+}

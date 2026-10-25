@@ -1,0 +1,8 @@
+"cell","arm","failed","basis","c2_status","rows","populations","mean_Z","sd_Z","ks_Z","cover95_studentized","mean_R_var","sd_R_var"
+"P-e3-rc-m400","oracle",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,-0.019081410828844,1.00441480735753,0.0182158408856422,0.955,0.999651079483183,0.0821933118685688
+"P-e3-rc-m400","Ra-AIPW",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,-0.0207389339163805,1.03069287070736,0.016615899488233,0.9545,1.03153648515568,0.0893224087624469
+"P-e3-rc-m400","Ra-AIPW-nocf",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,-0.0168583049532058,1.00272329383554,0.0177928769381435,0.9545,0.996030056052734,0.0800148440879589
+"P-e3-rc-m400","Rc-AIPW-psucf",0,"all replicates","UNGRADABLE (R-c: premise-failing tier, reported only, §12.4 :1368)",2000,400,-0.0891408702058748,1.52935044635756,0.131945703341125,0.9625,2.28411200973031,0.521459658179147
+"P-e3-rc-m400","Rc-AIPW-nocf",0,"all replicates","UNGRADABLE (R-c: premise-failing tier, reported only, §12.4 :1368)",2000,400,0.122236652447251,0.976914239356842,0.0505822398719487,0.8095,0.402814727308607,0.0401740317608115
+"P-e3-rc-m400","Rc-AIPW-indcf",0,"all replicates","UNGRADABLE (R-c: premise-failing tier, reported only, §12.4 :1368)",2000,400,-0.0473565756554292,1.38106890772634,0.101159949406739,0.9625,1.95249764899756,0.38728837585015
+"P-e3-rc-m400","Rc-AIPW-indcf-coarse",0,"all replicates","UNGRADABLE (R-c: premise-failing tier, reported only, §12.4 :1368)",2000,400,0.0487576534465612,1.50560355808169,0.108831456894369,0.9715,2.38028609263669,0.480104255771203

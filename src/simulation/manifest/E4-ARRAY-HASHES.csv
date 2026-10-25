@@ -1,0 +1,11 @@
+H,array,N,max_abs_t,array_sha256,tag,recorded
+25,regular,500,1.25,c41e3c249fe21a64646f28a1f6463d74a632e7460f430209de1b145c7466b0ef,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+25,dominant-stratum control,500,5.25,ffeeac3f28e97aaeb6187cdcf711e939b33b9505780af7d53ccb63676db7df3b,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+50,regular,1000,1.25,f2ba1625a46adcf26cc662bd139948dc73bb29ce29316bb035beb814c977df31,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+50,dominant-stratum control,1000,7.3210678118654755,7fd1655ef965ad27e0350b1e632809df39674f1a61872320b05d6790e10ccd93,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+100,regular,2000,1.25,4bd3d1df1d577b3e7b960a834b46b93e49dc77e96025654b76dcd3a251d4a994,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+100,dominant-stratum control,2000,10.25,ef180f6abbc48fcf94393822669c39c9366e9a18f49cc476891bfdc21e3a024d,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+200,regular,4000,1.25,70b32b6d4f6cabffeb5f393da41e5f63c39895c354461449514227062e2b6d6d,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+200,dominant-stratum control,4000,14.392135623730951,2e8165956d90fa90498fadfc9252281d02f24b8cc6412c62d3511a3160f0fadd,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+400,regular,8000,1.25,f81d69745378b9a772bbb4563eca0a084db49dca49173bcbadc3158e63427b08,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"
+400,dominant-stratum control,8000,20.25,91c0c3bb7672dab73710da0b18efac27fb04b7f4b038489d9dc1baaf025d7411,E4-array-v1,"ARC se00x, round 2 (job 13367381), 2026-10-11; frozen by spec v9.8 A3 section A3.11 (R11)"

@@ -1,0 +1,42 @@
+id	minutes	tests	script	args	mem	tasks	block	after	dry_ref	reps
+P-ms-H25	30	0	slice	--mode prod --regime many --H 25 --pops 1:400 --R 5	8G	40	10	-	ms-H25	5
+P-ms-H50	40	0	slice	--mode prod --regime many --H 50 --pops 1:400 --R 5	8G	40	10	-	ms-H50	5
+P-ms-H100	60	0	slice	--mode prod --regime many --H 100 --pops 1:400 --R 5	8G	40	10	-	ms-H100	5
+P-ms-H200	100	0	slice	--mode prod --regime many --H 200 --pops 1:400 --R 5	8G	40	10	-	ms-H200	5
+P-ms-H400	180	0	slice	--mode prod --regime many --H 400 --pops 1:400 --R 5	8G	40	10	-	ms-H400	5
+P-ms-H800	150	0	slice	--mode prod --regime many --H 800 --pops 1:400 --R 5	8G	40	10	-	ms-H800	5
+P-ms-or-H25	30	0	slice	--mode prod --regime many --H 25 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H25	4000
+P-ms-or-H50	30	0	slice	--mode prod --regime many --H 50 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H50	4000
+P-ms-or-H100	45	0	slice	--mode prod --regime many --H 100 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H100	4000
+P-ms-or-H200	75	0	slice	--mode prod --regime many --H 200 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H200	4000
+P-ms-or-H400	120	0	slice	--mode prod --regime many --H 400 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H400	4000
+P-ms-or-H800	200	0	slice	--mode prod --regime many --H 800 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	ms-or-H800	4000
+P-fs-m50	30	0	slice	--mode prod --regime fixed --m 50 --pops 1:400 --R 5	8G	40	10	-	fs-m50	5
+P-fs-m100	30	0	slice	--mode prod --regime fixed --m 100 --pops 1:400 --R 5	8G	40	10	-	fs-m100	5
+P-fs-m200	75	0	slice	--mode prod --regime fixed --m 200 --pops 1:400 --R 5 --rd-alphas 0.25,0.30	8G	40	10	-	fs-m200-rd	5
+P-fs-m400	90	0	slice	--mode prod --regime fixed --m 400 --pops 1:400 --R 5 --rd-alphas 0.25,0.30	8G	40	10	-	fs-m400-rd	5
+P-fs-m800	120	0	slice	--mode prod --regime fixed --m 800 --pops 1:400 --R 5 --rd-alphas 0.25,0.30	8G	40	10	-	fs-m800-rd	5
+P-fs-m1600	200	0	slice	--mode prod --regime fixed --m 1600 --pops 1:400 --R 5 --rd-alphas 0.25,0.30	8G	40	10	-	fs-m1600-rd	5
+P-fs-m3200	360	0	slice	--mode prod --regime fixed --m 3200 --pops 1:400 --R 5 --rd-alphas 0.25,0.30	16G	40	10	-	fs-m3200-rd	5
+P-fs-or-m50	30	0	slice	--mode prod --regime fixed --m 50 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m50	4000
+P-fs-or-m100	30	0	slice	--mode prod --regime fixed --m 100 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m100	4000
+P-fs-or-m200	45	0	slice	--mode prod --regime fixed --m 200 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m200	4000
+P-fs-or-m400	75	0	slice	--mode prod --regime fixed --m 400 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m400	4000
+P-fs-or-m800	120	0	slice	--mode prod --regime fixed --m 800 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m800	4000
+P-fs-or-m1600	200	0	slice	--mode prod --regime fixed --m 1600 --oracle-only 1 --pops 100001:100012 --R 4000	8G	12	1	-	fs-or-m1600	4000
+P-fpc-or-J100	30	0	slice	--mode prod --regime many --e2c fpc --J 100 --oracle-only 1 --pops 1:12 --R 2000	8G	4	3	-	fpc-or-J100	2000
+P-fpc-or-J20	30	0	slice	--mode prod --regime many --e2c fpc --J 20 --oracle-only 1 --pops 1:12 --R 2000	8G	4	3	-	fpc-or-J20	2000
+P-fpc-or-J8	30	0	slice	--mode prod --regime many --e2c fpc --J 8 --oracle-only 1 --pops 1:12 --R 2000	8G	4	3	-	fpc-or-J8	2000
+P-fpc-or-J4	75	0	slice	--mode prod --regime many --e2c fpc --J 4 --oracle-only 1 --pops 1:12 --R 10000	8G	12	1	-	fpc-or-J4	10000
+P-fpc-fit-J4	45	0	slice	--mode prod --regime many --e2c fpc --J 4 --pops 1:160 --R 5	8G	16	10	-	fpc-fit-J4	5
+P-strict-m200	60	0	slice	--mode prod --regime many --e2c strict --H 100 --pops 1:160 --R 5	8G	16	10	-	strict-m200	5
+P-calib-J4	60	0	slice	--mode prod --regime many --e2c fpc --J 4 --oracle-only 1 --calib 1 --pops 1 --R 8000	8G	1	1	-	calib-J4	8000
+P-wr-calib	30	0	slice	--mode prod --regime many --e2c wr --oracle-only 1 --calib 1 --pops 1 --R 8000	8G	1	1	-	wr-calib	8000
+P-strict-census	15	0	census	--traj strict --mode prod --pops 1:120	8G	4	30	-	strict-census	0
+P-unequal-census	15	0	census	--traj unequal --mode prod --pops 1:120	8G	4	30	-	unequal-pair	0
+P-vanish-census	30	0	census	--traj vanish --mode prod --pops 1:120	16G	12	10	-	vanish-census	0
+P-e3-rc-m400	150	0	slice	--mode prod --regime fixed --e3 panel --m 400 --pops 1:400 --R 5	8G	80	5	-	e3-rc-m400	5
+P-e3-vsens-V2	45	0	slice	--mode prod --regime fixed --e3 vsens --m 200 --V 2 --pops 1:400 --R 5	8G	20	20	-	e3-vsens-V2	5
+P-e3-vsens-V5	100	0	slice	--mode prod --regime fixed --e3 vsens --m 200 --V 5 --pops 1:400 --R 5	8G	20	20	-	e3-vsens-V5	5
+P-e3-ctrl-m400	45	0	slice	--mode prod --regime fixed --e3 ctrl --m 400 --pops 1:160 --R 5	8G	16	10	-	e3-ctrl-m400	5
+P-e4-array	30	0	e4	--mode prod --pops 1 --R 2000	8G	1	1	-	e4-array	2000

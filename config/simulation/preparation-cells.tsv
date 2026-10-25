@@ -1,0 +1,7 @@
+id	minutes	tests	script	args	mem	tasks	block	after
+prep-census-MS	30	0	prep	--job census --master MS --pops 1:400,100001:100012	8G	4	103	-
+prep-census-FS	40	0	prep	--job census --master FS --pops 1:400,100001:100012	8G	6	69	-
+prep-census-FPC	45	0	prep	--job census --master FPC --pops 1:160	16G	8	20	-
+prep-panel	25	0	prep	--job panel	8G	1	0	-
+prep-g1g4	20	0	prep	--job g1g4	4G	1	0	-
+prep-summary	10	0	prep	--job summary	4G	1	0	prep

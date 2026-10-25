@@ -1,0 +1,5 @@
+"cell","arm","failed","basis","c2_status","rows","populations","mean_Z","sd_Z","ks_Z","cover95_studentized","mean_R_var","sd_R_var"
+"P-e3-vsens-V2","oracle",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,-0.0167302497782249,0.992564732575563,0.019789746557703,0.9555,0.996348829137853,0.117955760530238
+"P-e3-vsens-V2","Rb-AIPW",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,0.168546929183858,1.11877036990875,0.0793459766876806,0.9515,1.2135038604644,0.174661365025189
+"P-e3-vsens-V5","oracle",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,-0.0167302497782249,0.992564732575563,0.019789746557703,0.9555,0.996348829137853,0.117955760530238
+"P-e3-vsens-V5","Rb-AIPW",0,"all replicates","diagnostic (E3 carries no C2 grade)",2000,400,0.149361170731422,1.07241034861892,0.0630884687202736,0.955,1.17765994759412,0.152804652656848

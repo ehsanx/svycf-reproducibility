@@ -1,0 +1,22 @@
+---
+# Per-facility client-count rules of the SPA frames, read by src/application/R/01-count-audit.R. Count mode refuses
+# to open any data file unless status is FROZEN and every field is set ("off" disables a threshold).
+status: FROZEN
+frozen_by: "Ehsan Karim"
+frozen_on: 2026-09-24
+surveys: [MW_SPA_2013-14, HT_SPA_2013, HT_SPA_2017-18]
+count_source: recode           # exit interview completed (c020b)
+client_record: obs_and_exit
+services: [AN, FP, SC]
+zero_record_facilities: drop
+strata: typegroup              # hospital / health centre / lower level
+thresholds:
+  min_mean_nk: 5
+  max_share_nk_0: "off"        # 0 by construction under drop
+  max_share_nk_le_1: 0.20
+  max_share_nk_le_2: 0.35
+  min_facilities_per_stratum: 10
+  stage2_c: 3                  # fixed-take stage 2: pi = 3 / n_k where n_k > 3
+  min_share_nk_gt_c: 0.50
+reporting_bins: [0, 1, 2, 3, 4, 5, 6, 8, 10, 15, 20]
+---

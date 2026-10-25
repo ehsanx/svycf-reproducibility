@@ -1,0 +1,94 @@
+{
+  "release_id": "svycf-code-v1.0.0+acdd8415bf70",
+  "execution_check": {
+    "commit": "19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210",
+    "note": "SHA-256 of every engine file the production runs hash (engine_files) and of its executable code with comments removed (engine_code, R files), at the commit whose execution check passed. This release's files have the same executable code, except the adapted ones, whose diagnostic message strings were reworded with every other token unchanged. The summary step checks output made under this release against this record.",
+    "engine_files": {
+      "DESCRIPTION": "12560cb45b7662b0c6db7797f5d2f8e99d2c621ec03d9d6f352751b57305c7f1",
+      "env/run.R": "fc4dafd5b910d46cde819d48dcb690a9d67dc94ef3418d148b1a0e4f5aa07521",
+      "runs/run_e2e_dev.R": "9129f6c463c3bb476e004cb2070349831b979a48d290ee46f22db2bd2184803e",
+      "runs/run_e2_census.R": "41c6498a290cb3a616ff8fc61bd14eec9fa88383c54cf7b72d2afe17075e9ff7",
+      "runs/run_e4.R": "372f29d371959d802eb37b4469994924c1687475b56685f486bba7190d51eac7",
+      "R/census.R": "0914b15ba2339f270cfa2ffc8c8720fb42dd34b150d7e5667a45aa1894dee09b",
+      "R/controls.R": "7f4bc59aac4d3225e6f2fab2645611c7ca0822f70aaead160f432faead4f15f0",
+      "R/dgp.R": "93c33f1675d34dde38ee85fbe57d79bf0ffaf6a776cef9a165b3a3f4ab97a2e1",
+      "R/e4.R": "ecc433846084983a9d60c6c7da37a283d53ea1390c857a4bd3a3558a0ac8e848",
+      "R/estimators.R": "2b5195f4abae895764fc6b3aef0133278ce10ab3062c2437ba32ed6329e8e417",
+      "R/folds.R": "114a61ac7f3aab42fc080472e41e263d690ed8b1bbb6ac1c4359e2659fc29e3e",
+      "R/gates.R": "9879251aab72bbba65841ba2cb1d72a66bc5cee07a51e0abeff582315fa74e2e",
+      "R/learner_ra.R": "c7f1e872c5cdd43ef169f52c2cd192aabbc0e003fc6e31b40654ff658c76fe31",
+      "R/learner_rb.R": "063cac353a504ffc2d2645676f0de8db381d92023116f3d37a27456b72d64399",
+      "R/learner_rd.R": "1ad73409f17ecf8870f9ad5911b080e15c258b341791ef50574e0ce8fdb1f735",
+      "R/nuisance_truth.R": "3c7e1ebc3f3d7377fd1993caaabf09a8ab42fd32af6381795fa9e69b866da90f",
+      "R/p0_grid.R": "5b8df98c3ba102d261be0d25fd35bbf27968c14f2c5137787a50f2e85aeb1a3b",
+      "R/quad_rules_io.R": "9fcf26864e16df0c68ec068a5707f05549b646bb123fd9ee7509cdfeef4d2d28",
+      "R/quadrature.R": "b3ec6d0f0d8ebded1868edd8553f00fbd8e406f5dc0398178021d0261f017d96",
+      "R/remainders.R": "b14e8ce8feb928bd97a1e9adc69b16b95f02af21daf420b0dfac8632ae69857a",
+      "R/rng_streams.R": "ca344bcd08d9fb3b9b023279cc8b4b95d8a5644b54dbc761909308b17efda653",
+      "R/run_mode.R": "8f2873e4580d433d4ddc9553c4666533579be1df6f028819398f6c165e9d42a6",
+      "R/sampling.R": "dc89f1ce05215d1c359edbe66bd9173569afd3d3487c9516de5e606182967c80",
+      "R/t2_refine.R": "35284c5f3d66f4d2f8b86b6905c25db5d51046ac2aa58210f92c392ec6374a83",
+      "R/tmle.R": "496872800639b1bf3b344e5ce3733072147465333ac72dec73c360aed87bbbbe",
+      "R/variance.R": "17cf77fad5965cfe886234fe66d53648f38e17ac25828193350567161bb18ea6"
+    },
+    "engine_code": {
+      "env/run.R": "0e8239ac2d451bcaa4c654e28d5160b38a3588e34b8329b56908889a39550f90",
+      "runs/run_e2e_dev.R": "9c084dd567a5a2047578ad3984c414e0dd4b39baf69a76e67626a2abee481e7d",
+      "runs/run_e2_census.R": "acf6535a077b8b69925e4a37813941bf6aaa63c35ac28fa339f4124cce0dd4c6",
+      "runs/run_e4.R": "02f01b4f16cc67cf338d926067a397866e1a72909de5b78536605604afb0eba2",
+      "R/census.R": "27630e5ddb4fbe508c7b412d892a1033209a10fbf7285ad9509ec37db465d666",
+      "R/controls.R": "17db236d3087f40b3e06e2d37527e1f50152a53d7a5630bd73327bd60d023082",
+      "R/dgp.R": "34ce5f4c41aa63b8178b8921556d43d5b57c37a74d057842f7e396489db011a1",
+      "R/e4.R": "8a4407926ff7598f911331dec0c3028f65e78ddfb42f0dabfa088b07f143b1bb",
+      "R/estimators.R": "bd661e3eb90f1795b5e1bb2712e7b956f814270f36dd0b842d94b2043b962c27",
+      "R/folds.R": "2115df808c72c53c610ca8d0e917354218a37d33cfa562b0fe630c97e2bf5a1b",
+      "R/gates.R": "921a3902cb109f2c851a7545d133a11badce3006af6aa903c9cfcbcf62effc49",
+      "R/learner_ra.R": "c88e17fe3976a818192301b65d5deb1659ffddfba91d0f2332037273ae1bc57d",
+      "R/learner_rb.R": "2c7580871aca25b05ba00725ac902aa4b00c45ad8c6edfbf86e8a67817bde87e",
+      "R/learner_rd.R": "0f50e8ac0d7b4c055536ac23a4e3aea8231b15f7f479993563288487b8363814",
+      "R/nuisance_truth.R": "2f750f0c4cb95e3357d0e047abd18c7dd600e23388160c41d9030bd59d85dd98",
+      "R/p0_grid.R": "bc939fb52c6ab31bb2aec6145ba11fb5dadfaefe0716d23534dc078d16f4ba0c",
+      "R/quad_rules_io.R": "eae29d01d88a01478f683c63eda3434ebd6ab97cc4ef99a92417a4811d4f578b",
+      "R/quadrature.R": "8d1fcc19c5e0b406d408beb3d459e7749c5e7bec093d03a142468cbbb612a767",
+      "R/remainders.R": "efda78e0fd424c739227b0ec084c548985ef6cae60e1e400a569b361b9daab6c",
+      "R/rng_streams.R": "68037e12e7020b898d9318c70490a7d36d5fde57b9eb2ea22e8d8d0efe6ffceb",
+      "R/run_mode.R": "486e9b7dc1f13a09b878977c36dab4e381bc83d5377dd1bcfe9311f09ca7ac13",
+      "R/sampling.R": "89e2757a60852860409b7fd6add8fe350f2db8ab9117abcb15bd7bc3cdeb17db",
+      "R/t2_refine.R": "969b8792651ac79e9e9e03196aae69752db107db9cd2d1e73b2fcf76f05df415",
+      "R/tmle.R": "efa29534b6359a3f0a4a952b09862276344e7baba8ba73c64db2f6f3bc4e9e09",
+      "R/variance.R": "380086f2e6d192d15621c8c7ccf03ddf07149d394e510cc71ec0f002a45b0268"
+    },
+    "adapted": [
+      "R/e4.R",
+      "R/folds.R",
+      "R/learner_ra.R",
+      "R/learner_rd.R",
+      "R/nuisance_truth.R",
+      "R/run_mode.R",
+      "R/sampling.R",
+      "runs/run_e2e_dev.R"
+    ]
+  },
+  "release_note": "Identity of this reproduction release: its name and the first 12 hex digits of the SHA-256 of a list with one line per file under src/ and vendor/ (\"<sha256>  <path>\", sorted by path, newline-terminated). Runs made with this release record it as their package identity (simulation: PACKAGE-COMMIT.txt, written by scripts/simulation/setup.sh; SPA: config/application/code-manifest.tsv). It is not a git commit.",
+  "recorded_runs": {
+    "simulation_production": {
+      "package_commit": "19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210",
+      "spec_sha256": "58fe3c9f53dda3c54c0e20c06216ff00e1411541933a23be8a9bbf8f64eead61",
+      "cluster": "UBC ARC Sockeye, R 4.4.0 (gcc/9.4.0 r/4.4.0), Rocky Linux 9",
+      "dates": "2026-10-16 to 2026-10-17 (task-7 recovery)"
+    },
+    "simulation_grading": {
+      "package_commit": "36035684b2955dbc906bc40d4a0d121e514a79bb",
+      "grading_pass": "grade-20261017T175903Z",
+      "B_boot": 10000,
+      "date": "2026-10-17"
+    },
+    "spa_application": {
+      "package_commit": "02954223b92710b2017b554f4c7c359fc9aafcd4",
+      "svytmle": "0.1.2, Packaged 2026-09-24 19:40:00 UTC",
+      "svytmle_md5": "c976da847d9d28069123835b4bb71281",
+      "date": "2026-10-06"
+    }
+  },
+  "commit_note": "The recorded runs were made at the commits above; the run outputs carry those identifiers. config/provenance.csv records, for every file here, its relation to the file at those commits: identical bytes, identical executable code with comments edited (code_sha256), or adapted."
+}

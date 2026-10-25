@@ -1,0 +1,7 @@
+# release	svycf-code-v1.0.0+acdd8415bf70
+path	md5
+config/application/protocol.yaml	050f723e9180aed6ddc281893c066f5a
+config/application/gate.yaml	9d863ffdd1738ffe2f4589f2239b3985
+src/application/R/00-unpack.R	d450187d75f9de2ade2ed9cf87a62de6
+src/application/R/01-count-audit.R	f1b7dfe40bfe9ddf033b932acaa2ad3e
+src/application/R/02-resample.R	82471a8f317cad0ee314894ad4d70161

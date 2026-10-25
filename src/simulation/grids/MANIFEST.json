@@ -1,0 +1,102 @@
+{
+  "file": "quad-rules-dev-v1.tsv",
+  "sha256": "90e35e3c0204c0501ea17e251be5084a26ef4d96f8ab77e3638391cdfded9501",
+  "status": "FROZEN with spec v9.8 (2026-10-11, the R3 design freeze): the base quadrature rules every v9.8 run loads (sha256 unchanged since 2026-10-07)",
+  "created_utc": "2026-10-07T03:41:42Z",
+  "built_on": {
+    "R": "R version 4.5.1 (2025-06-13 ucrt)",
+    "platform": "x86_64-w64-mingw32",
+    "os": "Windows 11 x64 (build 26200)",
+    "La_version": "3.12.1"
+  },
+  "rules": [
+    {
+      "rule": "gauss-legendre",
+      "n": 6
+    },
+    {
+      "rule": "gauss-legendre",
+      "n": 2
+    },
+    {
+      "rule": "clenshaw-curtis",
+      "n": 9
+    },
+    {
+      "rule": "clenshaw-curtis",
+      "n": 5
+    },
+    {
+      "rule": "gauss-hermite",
+      "n": 64
+    },
+    {
+      "rule": "gauss-hermite",
+      "n": 128
+    }
+  ],
+  "expected_grid_hash": {
+    "H": 25,
+    "primary": {
+      "definition": {
+        "rule": "gauss-legendre",
+        "n_c": 6,
+        "n_psu": 2
+      },
+      "sha256": "874a4b9e1e6570314625931f92b669c3cba039eda3275fce640abe6d9dabeaec"
+    },
+    "second": {
+      "definition": {
+        "rule": "clenshaw-curtis",
+        "n_c": 9,
+        "n_psu": 5
+      },
+      "sha256": "0b938de98406c14e0bb661b8932dd6d7ea306db8dc5947fea36f7f47e44e425c"
+    }
+  },
+  "note": "p0_grid_hash() of the H = 25 grids built from this artifact. Any platform that loads the artifact must reproduce these; tests/testthat/test-quad-rules.R asserts it.",
+  "expected_grid_hashes": [
+    {
+      "H": 5,
+      "primary_sha256": "e5c9b1d8198c9bdf83eca5613ced9b76b9a4e2eba39e07e0b5c7068ca4e81a60",
+      "second_sha256": "30d89246c9ec27fd99737dc4f2e8ec7d7268ee45fbbfb6d6d396f6689809da3e"
+    },
+    {
+      "H": 25,
+      "primary_sha256": "874a4b9e1e6570314625931f92b669c3cba039eda3275fce640abe6d9dabeaec",
+      "second_sha256": "0b938de98406c14e0bb661b8932dd6d7ea306db8dc5947fea36f7f47e44e425c"
+    },
+    {
+      "H": 50,
+      "primary_sha256": "a6999abb1b73c9163774b754e6b0783e0b8c67f8b0b61166683a1a85b92a3e0f",
+      "second_sha256": "b929260a8eba03f63a465a1028c8392ae6ced01a88d327e3b20363851c5a08e9"
+    },
+    {
+      "H": 100,
+      "primary_sha256": "6d944a93dcad36a18db950aa3763ea103189fe490400ca48f4bc30f839fa5d4b",
+      "second_sha256": "e891e03aa804d663cfd1d35baee9c5dd93d918cc512158fef9174eb51dd59ccc"
+    },
+    {
+      "H": 200,
+      "primary_sha256": "0298ceba7380902c4bcadec7af9de096e799e9ea872236d7382030175225dcaa",
+      "second_sha256": "d95fb0abe698a3de7faeb62fa8bf9316712cfe0367103057b6428626207b42bf"
+    },
+    {
+      "H": 400,
+      "primary_sha256": "4d78a05a877c5343a83d4f1b534498211eb168a6736a2b25b2dbfa04b6d625aa",
+      "second_sha256": "3556493b32e832ce7028527fe70c13ada7f6c559810fb3a1e7502bc2eef93c9e"
+    },
+    {
+      "H": 800,
+      "primary_sha256": "6d7259ced017e6a2157ded1a9f4ebfd5fde48cb88a54ad15e3e319a9aca5e2e5",
+      "second_sha256": "608e5fb40da411cf08ed92496d2d32d5c0d8fd1fc4e45879ea62823cefcacfa0"
+    }
+  ],
+  "expected_grid_hashes_recorded": {
+    "utc": "2026-10-11T21:48:18Z",
+    "R": "R version 4.5.1 (2025-06-13 ucrt)",
+    "platform": "x86_64-w64-mingw32",
+    "definitions": "primary and second as in expected_grid_hash (p0_context() defaults)",
+    "note": "p0_grid_hash() at each H, from the saved artifact. Every platform must reproduce them; tests/testthat/test-quad-rules.R asserts all of them and runs/run_e2e_dev.R checks its own H as a required check."
+  }
+}

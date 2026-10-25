@@ -1,0 +1,13 @@
+# Restricted survey data (never commit) and everything a run writes
+data/
+outputs/
+PACKAGE-COMMIT.txt
+config/slurm.env
+src/simulation/renv/library/
+src/simulation/renv/sandbox/
+src/simulation/renv/staging/
+src/simulation/runs/frozen/
+src/application/library/
+__pycache__/
+*.pyc
+.Rhistory

@@ -1,0 +1,37 @@
+"claim","role","cell","statistic","populations","PASS","RED_FLAG","UNGRADABLE","BLOCKED","NOT_GRADED"
+"C1 Z_oracle","implementation check","P-fs-or-m1600","KS_Z",12,12,0,0,0,0
+"C1 Z_oracle","implementation check","P-fs-or-m1600","mean_Z",12,12,0,0,0,0
+"C1 Z_oracle","implementation check","P-fs-or-m1600","sd_Z_minus_1",12,12,0,0,0,0
+"C1 Z_oracle","implementation check","P-ms-or-H800","KS_Z",12,12,0,0,0,0
+"C1 Z_oracle","implementation check","P-ms-or-H800","mean_Z",12,12,0,0,0,0
+"C1 Z_oracle","implementation check","P-ms-or-H800","sd_Z_minus_1",12,12,0,0,0,0
+"C2 oracle limb","implementation check","P-ms-or-H800","mean_R_var_minus_1",12,12,0,0,0,0
+"C2 oracle limb","implementation check","P-ms-or-H800","sd_R_var",12,12,0,0,0,0
+"C3a","scientific","P-fpc-or-J4","c3a_signed",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J100","KS_Z",12,8,0,4,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J100","mean_Z",12,11,0,1,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J100","sd_Z_minus_1",12,9,0,3,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J20","KS_Z",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J20","mean_Z",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J20","sd_Z_minus_1",12,9,0,3,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J4","KS_Z",12,11,0,1,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J4","mean_Z",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J4","sd_Z_minus_1",12,7,0,5,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J8","KS_Z",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J8","mean_Z",12,12,0,0,0,0
+"C3b premise: Z_oracle","premise check","P-fpc-or-J8","sd_Z_minus_1",12,11,0,1,0,0
+"C3b","scientific","P-fpc-or-J100","coverage_minus_0.80",12,7,0,5,0,0
+"C3b","scientific","P-fpc-or-J100","coverage_minus_0.90",12,7,0,5,0,0
+"C3b","scientific","P-fpc-or-J100","coverage_minus_0.95",12,7,0,5,0,0
+"C3b","scientific","P-fpc-or-J20","coverage_minus_0.80",12,9,0,3,0,0
+"C3b","scientific","P-fpc-or-J20","coverage_minus_0.90",12,9,0,3,0,0
+"C3b","scientific","P-fpc-or-J20","coverage_minus_0.95",12,9,0,3,0,0
+"C3b","scientific","P-fpc-or-J4","coverage_minus_0.80",12,6,0,6,0,0
+"C3b","scientific","P-fpc-or-J4","coverage_minus_0.90",12,6,0,6,0,0
+"C3b","scientific","P-fpc-or-J4","coverage_minus_0.95",12,6,0,6,0,0
+"C3b","scientific","P-fpc-or-J8","coverage_minus_0.80",12,11,0,1,0,0
+"C3b","scientific","P-fpc-or-J8","coverage_minus_0.90",12,11,0,1,0,0
+"C3b","scientific","P-fpc-or-J8","coverage_minus_0.95",12,11,0,1,0,0
+"C7","implementation check","P-e4-array","KS_Z",5,4,0,1,0,0
+"C7","implementation check","P-e4-array","mean_Z",5,5,0,0,0,0
+"C7","implementation check","P-e4-array","sd_Z_minus_1",5,4,0,1,0,0

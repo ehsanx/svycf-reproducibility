@@ -1,0 +1,52 @@
+{
+  "file": "quad-rules-refine-v1.tsv",
+  "sha256": "d741d92a0920f9e8ba626cc0d72fde0339487905361572c451bae43db82cd357",
+  "status": "PROPOSED (round 3d, 2026-10-15): the base rules of the T2 refinement ladder; not part of the frozen v9.8 artifact",
+  "created_utc": "2026-10-15T20:07:41Z",
+  "built_on": {
+    "R": "R version 4.5.1 (2025-06-13 ucrt)",
+    "platform": "x86_64-w64-mingw32",
+    "os": "Windows 11 x64 (build 26300)",
+    "La_version": "3.12.1"
+  },
+  "rules": [
+    {
+      "rule": "gauss-legendre",
+      "n": 8
+    },
+    {
+      "rule": "gauss-legendre",
+      "n": 3
+    },
+    {
+      "rule": "gauss-legendre",
+      "n": 10
+    },
+    {
+      "rule": "gauss-legendre",
+      "n": 4
+    },
+    {
+      "rule": "gauss-legendre",
+      "n": 12
+    },
+    {
+      "rule": "clenshaw-curtis",
+      "n": 13
+    },
+    {
+      "rule": "clenshaw-curtis",
+      "n": 7
+    }
+  ],
+  "weight_sums": {
+    "gauss-legendre:8": 2,
+    "gauss-legendre:3": 1.9999999999999996,
+    "gauss-legendre:10": 2,
+    "gauss-legendre:4": 2,
+    "gauss-legendre:12": 1.9999999999999993,
+    "clenshaw-curtis:13": 1.9999999999999998,
+    "clenshaw-curtis:7": 1.9999999999999998
+  },
+  "note": "Base rules on [-1, 1] (weights sum to 2). R/t2_refine.R t2_refine_rules_extend() adds them to the active store after the frozen artifact."
+}

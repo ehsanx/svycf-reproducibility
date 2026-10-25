@@ -1,0 +1,25 @@
+file,survey,file_type,structure,bytes,md5
+HTAN6ADTSR.zip,Haiti SPA 2013,Antenatal Care,recode (SR),267881,0c4296fae12aa6ca8b9ce166b04b9ab9
+HTAN6BDTSP.zip,Haiti SPA 2013,Antenatal Care,raw (SP),621990,ef780c7ede55e2df0d76f826d0323894
+HTAN7ADTSP.zip,Haiti SPA 2017-18,Antenatal Care,raw (SP),119650,f409f737bddb54c8ccbb2c3006f962a2
+HTAN7ADTSR.zip,Haiti SPA 2017-18,Antenatal Care,recode (SR),317090,ed83ba49268c5ac2329c8edaa91a2bf1
+HTFC6ADTSR.zip,Haiti SPA 2013,Facility,recode (SR),585402,fc8244a23540090422a0620e1186d1df
+HTFC6BDTSP.zip,Haiti SPA 2013,Facility,raw (SP),1004773,92b0262b6f835f6d0b29e0a1d66dceca
+HTFC7ADTSP.zip,Haiti SPA 2017-18,Facility,raw (SP),588505,da014c8833962d6fadbe2d5dcc70f28d
+HTFC7ADTSR.zip,Haiti SPA 2017-18,Facility,recode (SR),741290,0cea6f219537397489cfe48907e3ae14
+HTFP6ADTSR.zip,Haiti SPA 2013,Family Planning,recode (SR),255766,8b6ed80cfe1264c615c04307193541e9
+HTFP6BDTSP.zip,Haiti SPA 2013,Family Planning,raw (SP),605752,e91a125ef0f978f594c7511ee276012f
+HTFP7ADTSP.zip,Haiti SPA 2017-18,Family Planning,raw (SP),100922,6fbac31633b7d65cd9f366b6ff77c2c7
+HTFP7ADTSR.zip,Haiti SPA 2017-18,Family Planning,recode (SR),284625,763043bed0dfca26005f5d6c46b4ba4e
+HTSC6ADTSR.zip,Haiti SPA 2013,Sick Child,recode (SR),340337,1274a906df69bd32954989a25d011213
+HTSC6BDTSP.zip,Haiti SPA 2013,Sick Child,raw (SP),704886,3c042ed1bec570f313ed3c1653b9d4dc
+HTSC7ADTSP.zip,Haiti SPA 2017-18,Sick Child,raw (SP),166290,1ff5e48a0cf58fa2bac35cfb9cac1c9e
+HTSC7ADTSR.zip,Haiti SPA 2017-18,Sick Child,recode (SR),350753,382c102d66fb8b603d0353f83c787fe1
+MWAN6IDTSR.zip,Malawi SPA 2013-14,Antenatal Care,recode (SR),353140,45506d15ff043efab394a7b853c64b34
+MWAN6KDTSP.zip,Malawi SPA 2013-14,Antenatal Care,raw (SP),142758,122772ddc62d5bc0134294b75ace5d4d
+MWFC6JDTSR.zip,Malawi SPA 2013-14,Facility,recode (SR),687547,e2ecb1513ede01aa85a9c9128ab36b98
+MWFC6KDTSP.zip,Malawi SPA 2013-14,Facility,raw (SP),470001,d75d5ba458a62be6dde8944741b3758a
+MWFP6IDTSR.zip,Malawi SPA 2013-14,Family Planning,recode (SR),322071,8508fac5c79bafca091ca356da4bd2ad
+MWFP6KDTSP.zip,Malawi SPA 2013-14,Family Planning,raw (SP),104270,4fb0db0b8870edc417c19540b31ae631
+MWSC6IDTSR.zip,Malawi SPA 2013-14,Sick Child,recode (SR),464634,7655c106d1088e32b3887a53c25dc59f
+MWSC6KDTSP.zip,Malawi SPA 2013-14,Sick Child,raw (SP),224549,1828e743c3d6683153c6ade6f01a6565

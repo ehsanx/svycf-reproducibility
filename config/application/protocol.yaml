@@ -1,0 +1,27 @@
+---
+# Settings of the SPA resampling study, read by src/application/R/02-resample.R and scripts/application/make_tasks.R.
+# The analysis refuses to open any data file unless status is FROZEN, every field is set and the installed svytmle
+# carries the svytmle_packaged stamp below.
+status: FROZEN
+frozen_by: "Ehsan Karim"
+frozen_on: 2026-09-24
+anchor: "Turcotte-Tremblay AM, Lee HY, Kruk ME. What are the determinants of variation in caretaker satisfaction with sick child consultations? A cross-sectional analysis in five low-income and middle-income countries. BMJ Open 2023;13(12):e071037. doi:10.1136/bmjopen-2022-071037"
+spec_id: TT2023_pooled            # outcome, exposure and covariate coding: SPECS in 02-resample.R
+survey: MW_SPA_2013-14            # primary survey
+replication_surveys: [HT_SPA_2017-18, HT_SPA_2013]
+design:
+  f: 0.25                         # stage 1: SRS-WOR fraction of facilities per stratum (facility-type strata)
+  c: 3                            # stage 2: SRS-WOR of min(3, N_k) records per sampled facility
+estimation:
+  R: 500                          # resamples
+  R_ref: 20                       # census pseudo-reference splits (median)
+  cf_folds: 5                     # svytmle reduces V to the minimum number of PSUs per stratum
+  g_bound: 0.05
+  learners: [SL.glm, SL.earth.w, SL.glmnet, SL.ranger]
+  seed: 20260924
+  fresh_folds_per_replicate: true
+  svytmle_version: "0.1.2"
+  svytmle_rdb_md5: "94a9a99a9a5315e323d76467528b193a"   # md5 of the installed svytmle/R/svytmle.rdb (recorded, not enforced)
+  svytmle_packaged: "2026-09-24 19:40:00 UTC; wilds"    # DESCRIPTION 'Packaged' stamp of vendor/svytmle_0.1.2.tar.gz (enforced)
+  svytmle_commit: "5534234bde638a34f735556b806db78231a25b66"   # github.com/ehsanx/svytmle
+---

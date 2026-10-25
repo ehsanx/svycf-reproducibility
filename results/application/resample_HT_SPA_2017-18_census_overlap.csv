@@ -1,0 +1,21 @@
+"covariate_set","stat","value"
+"primary C","p01",0.252720763977619
+"primary C","p05",0.316877165555813
+"primary C","p25",0.371587506606574
+"primary C","p50",0.545343438813175
+"primary C","p75",0.572972140051725
+"primary C","p95",0.67787522491183
+"primary C","p99",0.71764119623806
+"primary C","share_below_bound",0
+"primary C","share_above_1_minus_bound",0
+"primary C","share_truncated",0
+"C + design (sensitivity)","p01",0.0268864511070008
+"C + design (sensitivity)","p05",0.0496347937967011
+"C + design (sensitivity)","p25",0.311853921602189
+"C + design (sensitivity)","p50",0.523454625228463
+"C + design (sensitivity)","p75",0.653954138671412
+"C + design (sensitivity)","p95",0.87399560643217
+"C + design (sensitivity)","p99",0.982653614745055
+"C + design (sensitivity)","share_below_bound",0.0509000620732464
+"C + design (sensitivity)","share_above_1_minus_bound",0.0281398717152907
+"C + design (sensitivity)","share_truncated",0.0790399337885371

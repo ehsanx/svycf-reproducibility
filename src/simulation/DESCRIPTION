@@ -1,0 +1,19 @@
+Type: project
+Title: svytmle-eif-clt simulation engine (not a package)
+Description: Dependency manifest for the simulation engine's explicit renv
+    snapshot (settings snapshot.type = "explicit"). Only Imports below, plus
+    their recursive dependencies, enter renv.lock. See env/README.md.
+    Spec authority: letter/SIM-DESIGN-SPEC.md (record environment, :900).
+Imports:
+    digest,
+    jsonlite,
+    testthat,
+    svytmle,
+    SuperLearner,
+    tmle,
+    survey,
+    surveyCV,
+    ranger,
+    earth,
+    glmnet,
+    lme4

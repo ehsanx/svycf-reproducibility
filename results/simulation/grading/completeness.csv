@@ -1,0 +1,42 @@
+"cell","status","detail","missing_tasks","runs","superseded"
+"P-ms-H400","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-ms-H800","COMPLETE","400 populations x reps 1..5 x 2 frozen arms","",40,0
+"P-ms-H25","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-ms-H50","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-ms-H100","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-ms-H200","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-ms-or-H25","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-ms-or-H50","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-ms-or-H100","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-ms-or-H200","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-ms-or-H400","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-ms-or-H800","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-m50","COMPLETE","400 populations x reps 1..5 x 3 frozen arms","",40,0
+"P-fs-m100","COMPLETE","400 populations x reps 1..5 x 3 frozen arms","",40,0
+"P-fs-m200","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-fs-m400","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-fs-m800","COMPLETE","400 populations x reps 1..5 x 5 frozen arms","",40,0
+"P-fs-m1600","COMPLETE","400 populations x reps 1..5 x 4 frozen arms","",40,0
+"P-fs-m3200","COMPLETE","400 populations x reps 1..5 x 3 frozen arms","",40,0
+"P-fs-or-m50","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-or-m100","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-or-m200","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-or-m400","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-or-m800","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fs-or-m1600","COMPLETE","12 populations x reps 1..4000 x 1 frozen arms","",12,0
+"P-fpc-or-J100","COMPLETE","12 populations x reps 1..2000 x 1 frozen arms","",4,0
+"P-fpc-or-J20","COMPLETE","12 populations x reps 1..2000 x 1 frozen arms","",4,0
+"P-fpc-or-J8","COMPLETE","12 populations x reps 1..2000 x 1 frozen arms","",4,0
+"P-fpc-or-J4","COMPLETE","12 populations x reps 1..10000 x 1 frozen arms","",12,0
+"P-fpc-fit-J4","COMPLETE","160 populations x reps 1..5 x 3 frozen arms","",16,0
+"P-strict-m200","COMPLETE","160 populations x reps 1..5 x 3 frozen arms","",16,0
+"P-calib-J4","COMPLETE","1 populations x reps 1..8000 x 1 frozen arms","",1,0
+"P-wr-calib","COMPLETE","1 populations x reps 1..8000 x 1 frozen arms","",1,0
+"P-strict-census","COMPLETE","120 populations x the 5 frozen rungs","",4,0
+"P-unequal-census","COMPLETE","120 populations x the 2 frozen rungs","",4,0
+"P-vanish-census","COMPLETE","120 populations x the 5 frozen rungs","",12,0
+"P-e3-rc-m400","COMPLETE","400 populations x reps 1..5 x 7 frozen arms","",80,0
+"P-e3-vsens-V2","COMPLETE","400 populations x reps 1..5 x 2 frozen arms","",20,0
+"P-e3-vsens-V5","COMPLETE","400 populations x reps 1..5 x 2 frozen arms","",20,0
+"P-e3-ctrl-m400","COMPLETE","160 populations x reps 1..5 x 3 frozen arms","",16,0
+"P-e4-array","COMPLETE","5 rungs x reps 1..2000","",1,0

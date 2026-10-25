@@ -1,0 +1,7 @@
+"check","ok","detail"
+"every production cell agrees with the frozen design (cells.tsv vs frozen_cells())",TRUE,""
+"every production run folder: mode prod, the production root, the frozen v9.8 spec",TRUE,"879 folders, 0 not ok"
+"one package commit across every production run folder",TRUE,"19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210"
+"that commit is the one the round-3 assembly PASSed (production guard)",TRUE,"production 19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210; round 3 19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210"
+"round-3 execution-gate verdict",TRUE,"PASS"
+"kappa_AE: the production panel's record is the frozen round-3 record (content SHA-256)",TRUE,"production f59a3780ac4f466dbcbc0120f4ad73d2524ca2966202f6342e284691d865c267; round 3 f59a3780ac4f466dbcbc0120f4ad73d2524ca2966202f6342e284691d865c267"

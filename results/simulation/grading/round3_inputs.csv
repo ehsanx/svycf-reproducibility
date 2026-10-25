@@ -1,0 +1,8 @@
+"input","path","sha256"
+"execution_gates.json","<run-root>/simulation/engine/runs/out/round3d/assemble/assemble-20261016T071738Z/execution_gates.json","3d31b943a6039379aa1f44cbe59f66052801b08eb01c890fb23ab0e6d7e584f9"
+"g5.csv","<run-root>/simulation/engine/runs/out/round3d/assemble/assemble-20261016T071738Z/g5.csv","9943f82b69bef0d3672ba5b2168f2ba43d5a112408844634ac6d65ef1d200a94"
+"rb_gates.csv","<run-root>/simulation/engine/runs/out/round3d/assemble/assemble-20261016T071738Z/rb_gates.csv","095f66802b83b2673f6c2ae7dd8ff2baaccaffad14eb058d8a5801f44519518c"
+"g7.csv","<run-root>/simulation/engine/runs/out/round3d/assemble/assemble-20261016T071738Z/g7.csv","b752aec2422b318f324d762840dc05c0f3049c4e4f97cd5795e69ddc02fd9721"
+"g6.csv","<run-root>/simulation/engine/runs/out/round3/prep-panel/prep-panel-20261012T081105Z/g6.csv","19aee0c1f69cb11bff56f2f19f6ef342a2893fcb2170c8a885181bb737ca68b0"
+"prep_gates.json","<run-root>/simulation/engine/runs/out/round3/prep-summary/prep-summary-20261012T083222Z/prep_gates.json","d5bf461d71f94b5ce138a9cc2842748c86988b17237ed8655e1f27ed9ed524cd"
+"kappa_ae.json","<run-root>/simulation/engine/runs/out/round3/prep-panel/prep-panel-20261012T081105Z/kappa_ae.json","ca5748d394915b72ef911482ccb3f44e03456d8d5246f29f20846cd2f263c359"

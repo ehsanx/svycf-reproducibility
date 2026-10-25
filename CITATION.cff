@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite this version of the repository."
+type: software
+license:
+  - MIT
+  - CC-BY-4.0
+title: "Reproduction materials: design-based central limit theorem for cross-fitted influence functions"
+repository-code: "https://github.com/ehsanx/svycf-reproducibility"
+url: "https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.0.0"
+version: "v1.0.0"
+authors:
+  - family-names: Karim
+    given-names: M. Ehsan
+    affiliation: University of British Columbia
+    orcid: "https://orcid.org/0000-0002-0346-2871"

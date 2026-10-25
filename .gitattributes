@@ -1,0 +1,6 @@
+# Every file is kept byte for byte as distributed (SHA-256 in config/provenance.csv): LF line endings on every
+# platform, whatever core.autocrlf says, and no conversion of binary files.
+* text=auto eol=lf
+*.tar.gz binary
+*.pdf binary
+*.rds binary
