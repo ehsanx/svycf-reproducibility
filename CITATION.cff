@@ -6,8 +6,8 @@ license:
   - CC-BY-4.0
 title: "Reproduction materials: finite-population inference for cross-fitted estimators of treatment contrasts in stratified multistage surveys"
 repository-code: "https://github.com/ehsanx/svycf-reproducibility"
-url: "https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.1.0"
-version: "v1.1.0"
+url: "https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.1.1"
+version: "v1.1.1"
 authors:
   - family-names: Karim
     given-names: M. Ehsan

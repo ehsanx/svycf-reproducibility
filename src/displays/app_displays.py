@@ -194,7 +194,7 @@ def build(root, out_main, out_supp, mac, num, interval, longtable, hdr):
               body,
               "SPA analysis frames and the imposed design. Frames are the eligible facility and client records "
               "(completed facility, observation and exit interview), after excluding records with missing exposure or "
-              "outcome (excl.). Each resample draws a quarter of the facilities in every facility-type stratum by "
+              "outcome (excl.). Each resample draws about a quarter of the facilities in each facility-type stratum by "
               "SRS-WOR, then up to three records per sampled facility by SRS-WOR; the last four columns summarize the "
               "500 resamples (range of sampled records, range of design weights, median Kish design effect of the "
               "weights).", "tab:S-app-frames", size=r"\scriptsize")
@@ -252,7 +252,9 @@ def build(root, out_main, out_supp, mac, num, interval, longtable, hdr):
                 num(o[(cs, "p99")], 3), "%.1f" % (100 * o[(cs, "share_truncated")])))
     longtable("tabS_app_overlap.tex", "@{}llrrrr@{}",
               "survey & covariates & $P_{0.01}$ & median & $P_{0.99}$ & outside $[0.05,0.95]$, \\%", body,
-              "Census overlap diagnostic: out-of-fold SuperLearner estimates of $P(A=1\\mid C)$ on the whole frame, for "
-              "the primary and sensitivity covariate sets. A covariate set is flagged as overlap-strained when "
+              "Census overlap diagnostic: estimates of $P(A=1\\mid C)$ on the whole frame that combine record-level "
+              "cross-validated base-learner predictions with SuperLearner ensemble weights fitted on the full frame, "
+              "for the primary and sensitivity covariate sets; this is not the facility-held-out prediction of the "
+              "primary estimators. A covariate set is flagged as overlap-strained when "
               "more than 10\\% of values fall outside $[0.05,0.95]$; this is a model-based diagnostic, not a proof of "
               "positivity.", "tab:S-app-overlap", size=r"\scriptsize")

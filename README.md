@@ -6,7 +6,7 @@ Code, recorded results and checks for
 > multistage surveys. *(Journal details will be added on publication.)*
 
 M. Ehsan Karim, University of British Columbia (ORCID [0000-0002-0346-2871](https://orcid.org/0000-0002-0346-2871)).
-This is version v1.1.0 of the reproduction materials.
+This is version v1.1.1 of the reproduction materials.
 
 The paper has two numerical parts:
 
@@ -241,7 +241,7 @@ The unresolved score-total discrepancy and numerical remainder exclusions are de
 | `simulation-task7-recovery.tar.gz` | 77 kB | 9 | Task 7 of P-e3-ctrl-m400 |
 
 Assemble both for the complete output. SHA-256 and md5: `config/assets.csv`.
-Download them from this repository's v1.1.0 release (release v1.0.0 carries the same two files). Each run folder holds
+Download them from this repository's v1.1.1 release (releases v1.0.0 and v1.1.0 carry the same two files). Each run folder holds
 `results.csv` (one row per replicate and arm: estimate, variance estimate, interval, remainders, status), `census.csv`
 and `census_strata.csv` (census targets), `checks.csv` (implementation checks), `timing.csv`, `t2_refinement.csv` and
 `manifest.json` (settings, identities, environment; the cluster path prefix is replaced by `<run-root>`). Run
@@ -382,6 +382,6 @@ licences: `vendor/svytmle_0.1.2.tar.gz` (GPL >= 3) and `src/simulation/renv/acti
 (MIT). The R and Python packages that the setup scripts install are not distributed here and have their own licences.
 
 To cite these materials, cite M. Ehsan Karim (2026), Reproduction materials: finite-population inference for
-cross-fitted estimators of treatment contrasts in stratified multistage surveys, version v1.1.0, GitHub,
-https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.1.0. The release identifies the exact source commit.
+cross-fitted estimators of treatment contrasts in stratified multistage surveys, version v1.1.1, GitHub,
+https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.1.1. The release identifies the exact source commit.
 The paper citation above will be updated on publication. Citation metadata: `CITATION.cff`.
