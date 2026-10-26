@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build every simulation display of the manuscript from the saved grading outputs.
 
-Nothing here is typed by hand: each number in Figure 1, Table 1, the supplement's tables and the
-\\Sim... macros used in the prose is read from the saved summaries in results/simulation/ and
+Nothing here is typed by hand: each number in the simulation figure (Figure 3), Table 1, the supplement's
+tables and the \\Sim... macros used in the prose is read from the saved summaries in results/simulation/ and
 results/application/. Re-running the script on the
 same inputs reproduces the same files.
 
@@ -14,16 +14,20 @@ Inputs (read only), under results/simulation/:
 and the SPA aggregates under results/application/ (app_displays.py).
 
 Outputs (overwritten), under results/displays/ (or $DISPLAY_OUT):
-    main/fig1_simulation.pdf
+    main/fig_targets.pdf, main/fig_folds_variances.pdf   (Figures 1-2, TikZ diagrams; diagram_displays.py)
+    main/fig1_simulation.pdf         (Figure 3)
+    main/fig_application.pdf         (Figure 4; app_displays.py)
     main/tab1_estimates.tex          (tabular body of Table 1, panel A: estimates, benchmarks)
     main/tab1_coverage.tex           (tabular body of Table 1, panel B)
     main/sim_numbers.tex             (\\newcommand macros quoted in the prose)
+    supplement/figS_proof_map.pdf    (Figure S1, standalone copy; diagram_displays.py)
+    supplement/figS_bridge.pdf       (Figure S2, the vanishing-fraction trajectory of tabS_vanish.tex)
     supplement/tabS_*.tex            (supplement tables, complete environments, without the grading labels)
     extended/tabS_*.tex, rec_index.tex   (every table in its original form, with the original classifications and
                                       checks, and the cell index; not printed in the paper)
 
 Run from anywhere:   python src/displays/make_sim_displays.py
-Requires: python >= 3.10, pandas, numpy, matplotlib.
+Requires: python >= 3.10, pandas, numpy, matplotlib, and pdflatex for Figures 1, 2 and S1.
 """
 import ast
 import os
@@ -665,7 +669,7 @@ mac("SimCovSEBig", num(math.sqrt(0.95 * 0.05 / 2000), 3))
 mac("SimCovSESmall", num(math.sqrt(0.95 * 0.05 / 800), 3))
 
 # ----------------------------------------------------------------------------------------------
-# Figure 1
+# Simulation figure (Figure 3 of the paper; file fig1_simulation.pdf)
 # ----------------------------------------------------------------------------------------------
 plt.rcParams.update({"font.size": 8, "axes.titlesize": 8.5, "axes.labelsize": 8, "legend.fontsize": 7,
                      "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "lines.linewidth": 1.0,
@@ -1276,7 +1280,7 @@ CELLS_SPEC = ("@{}l@{\\hspace{3pt}}l>{\\raggedright\\arraybackslash}p{0.19\\line
               ">{\\raggedright\\arraybackslash}p{0.16\\linewidth}@{}")
 longtable("tabS_cells.tex", CELLS_SPEC, CELLS_HDR, cell_rows(),
           "The %s simulation cells: experiment, coordinates, the question each answers, its Monte Carlo design and "
-          "where its results are reported. Every cell completed, and no learner fit failed. Implementation checks "
+          "where its results are reported. Implementation checks "
           "and the oracle cells at fixed populations are reported in the results files of the code repository."
           % len(complete), "tab:S-cells", size=r"\scriptsize")
 # The same index as an extended table, pointing into the supplement (xr prefix A:) and into the extended tables.
@@ -1320,8 +1324,8 @@ body.append(r"aligned-error constant & 160 power-panel populations; $\kappa_{\ma
 longtable("tabS_rates.tex", "@{}>{\\raggedright\\arraybackslash}p{0.27\\linewidth}>{\\raggedright\\arraybackslash}"
           "p{0.4\\linewidth}>{\\raggedright\\arraybackslash}p{0.29\\linewidth}@{}",
           "learner or control & diagnostic & reading", body,
-          "Learner rate diagnostics and control calibration, computed on the dry-run replicates before the main "
-          "runs. For the throttled learner, the slope of the log out-of-fold error on $\\log m$ over "
+          "Learner rate diagnostics and control calibration, computed in pilot simulations before the main "
+          "simulations. For the throttled learner, the slope of the log out-of-fold error on $\\log m$ over "
           "$m=200,\\dots,3200$ (population-clustered CR2 standard errors, $t_{24}$ reference) is compared with "
           "the designed slope $-\\alpha$; for the forest, the slope over $m=50,\\dots,800$. These finite checks "
           "do not prove asymptotic rates. The control rows give each control's census-predicted value and its "
@@ -1344,10 +1348,11 @@ for _, r in sci[sci.estimate.notna()].iterrows():
         num(r.estimate, d), interval(r.ci_lo, r.ci_hi, d), reg))
 longtable("tabS_estimates.tex", "@{}llllrl>{\\raggedright\\arraybackslash}p{0.17\\linewidth}@{}",
           "question & setting & arm & statistic & estimate & 95\\% MC interval & benchmark", body,
-          "Every estimate compared with its benchmark, with its 95\\% Monte Carlo interval (percentile interval "
+          "Estimates compared with their benchmarks, with 95\\% Monte Carlo intervals (percentile interval "
           "of 10{,}000 resamples of whole populations; of populations for the census bridge). For a control "
-          "condition the benchmark column gives the region it was designed to leave. Not listed, because no "
-          "estimate exists: the throttled learner at $\\alpha=0.20$ and $0.35$, which was not run. Two variance "
+          "condition the benchmark column gives the region it was designed to leave. The throttled-learner "
+          "configurations with $\\alpha=0.20$ and $0.35$ were not included in the main simulations, following "
+          "the pilot rate diagnostics (Section~\\ref{supp:learners}). Two variance "
           "controls were expected to stay inside the region and are descriptive. The forest's "
           "normal-approximation and TMLE values, for which the required convergence-rate condition was not "
           "established, are reported descriptively in Table~\\ref{tab:S-ms}. $Q_{0.9}|T_j|$ is the 0.9 quantile "
@@ -1389,8 +1394,8 @@ longtable("tabS_fs.tex", "@{}rlrrrrrrrrrr@{}",
           "numerically and are kept as missing. The envelope ratios $\\sqrt m|T_1|/\\hat r_m$ and "
           "$|T_2|/(\\hat r_Q\\hat r_g)$ (0.9 quantiles) and the mean out-of-fold error $\\hat r_m$ are descriptive. "
           "R-a TMLE remainders are not reported (n.r.), because their numerical evaluation was not validated "
-          "(Section~\\ref{supp:numres}). The throttled learner R-d runs at $m\\ge200$ only; $\\alpha=0.20$ and $0.35$ "
-          "were not run.", "tab:S-fs", size=r"\scriptsize", land=True)
+          "(Section~\\ref{supp:numres}). The throttled learner R-d is reported for $m\\ge200$ and "
+          "$\\alpha=0.25,0.30$.", "tab:S-fs", size=r"\scriptsize", land=True)
 body = []
 for _, r in e2f.iterrows():
     body.append("%s & %s & %s & %s & %s & %s & %s & %s & %s\\\\" % (
@@ -1449,6 +1454,28 @@ longtable("tabS_vanish.tex", "@{}rrrrrrr@{}",
           "testing it independently. The last column reports "
           "the leading-order relation between the mean without-replacement gap and the across-population variance "
           "of $\\Psi_N-\\Psi$, which is outside Theorem~\\ref{thm:clt}.", "tab:S-vanish", size=r"\scriptsize")
+# Figure S2: the same trajectory as Table S-vanish; the only Monte Carlo interval is the smallest fraction's 0.9
+# quantile (the graded row).
+vt = vanish.sort_values("f")
+assert vt.terminal.iloc[0] and not vt.terminal.iloc[1:].any() and np.isclose(_rb.estimate, vt.q90_bridge.iloc[0])
+fig, ax = plt.subplots(figsize=(3.6, 2.45))
+fig.subplots_adjust(left=0.17, right=0.97, top=0.97, bottom=0.2)
+ax.axhspan(0.0, 0.10, color=BAND, lw=0, zorder=0)
+ax.text(0.19, 0.05, "benchmark 0.10", fontsize=7, ha="right", va="center", color="#4d4d4d")
+ax.plot(vt.f, vt.q90_bridge, "-", color="k", marker="o", label="0.9 quantile")
+ax.plot(vt.f, vt.median_bridge, "-", color=C_OR, marker="o", ms=2.5, label="median")
+ax.errorbar([vt.f.iloc[0]], [_rb.estimate], yerr=[[_rb.estimate - _rb.ci_lo], [_rb.ci_hi - _rb.estimate]],
+            fmt="none", color="k", capsize=2, lw=0.9)
+ax.set_xscale("log")
+ax.set_xticks(list(vt.f))
+ax.set_xticklabels([ftxt(f) for f in vt.f])
+ax.minorticks_off()
+ax.set_ylim(0, 0.76)
+ax.set_xlabel("first-stage fraction $f$ (census construction, $m_h=2$)")
+ax.set_ylabel(r"$|\Psi_N-\Psi|\,/\,\sigma_{m,\mathrm{wor}}$")
+ax.legend(loc="upper left", frameon=False)
+fig.savefig(OUT_SUPP / "figS_bridge.pdf", metadata={"CreationDate": None})  # no timestamp: reproducible bytes
+plt.close(fig)
 body = []
 for _, r in rc.iterrows():
     body.append("%s & %s & %s & %s & %s & %s\\\\" % (
@@ -1469,11 +1496,11 @@ for (cell, arm), v in unresolved.items():
     body.append("%s & %s & %d & %s\\\\" % (tex_escape(cell), ARM[arm], v,
                                           "not reported (not validated)" if arm.endswith("TMLE") else "kept as missing"))
 longtable("tabS_unresolved.tex", "@{}llrl@{}", "cell & arm & unresolved & treatment", body,
-          "Arm-by-replicate entries whose second-order remainder $T_2$ could not be resolved by the refined "
-          "quadrature (%s entries in total, all at $m\\le400$). A sample can contribute an entry for more than one "
-          "arm, so this is not a count of distinct samples. $T_2$ and $T_1$ are recorded as missing and every "
-          "estimate is kept; R-a TMLE remainders are not reported in any case. No sample size compared with a "
-          "benchmark is affected." % sum(unresolved.values()),
+          "Numerically unresolved remainder evaluations: %s arm-by-replicate entries, all at $m\\le400$. A sample "
+          "may contribute entries for more than one arm. Unresolved $T_2$ and $T_1$ values are recorded as "
+          "missing and omitted from remainder summaries; the corresponding point and variance estimates are "
+          "kept. R-a TMLE remainders are not reported in any case, because their numerical evaluation was not "
+          "validated. No unresolved entry occurs at a sample size compared with a benchmark." % sum(unresolved.values()),
           "tab:S-unresolved", size=r"\scriptsize")
 # Remove supplement copies of tables that now live only in the record (written there above).
 for _f in ("tabS_grades.tex", "tabS_dispositions.tex", "tabS_popindexed.tex", "tabS_e1oracle.tex",
@@ -1497,5 +1524,11 @@ lines = ["% GENERATED by src/displays/make_sim_displays.py from the grading outp
 for k in sorted(M):
     lines.append("\\newcommand{\\%s}{%s}" % (k, M[k]))
 (OUT_MAIN / "sim_numbers.tex").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-print("wrote %d macros, Figure 1, Table 1 (2 panels) and %d supplement tables" % (
+
+# ----------------------------------------------------------------------------------------------
+# Conceptual figures (TikZ, no data): see diagram_displays.py
+# ----------------------------------------------------------------------------------------------
+import diagram_displays  # noqa: E402
+diagram_displays.build(OUT_MAIN, OUT_SUPP)
+print("wrote %d macros, Figures 1-4, Table 1 (2 panels), Figures S1-S2 and %d supplement tables" % (
     len(M), len(list(OUT_SUPP.glob("tabS_*.tex")))))

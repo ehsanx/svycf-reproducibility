@@ -1,5 +1,6 @@
-# Display rebuild and checks (src/displays/, tests/). Verified with CPython 3.10.6 and these versions; the figure
-# and tables are byte-identical to the paper's with them.
+# Display rebuild and checks (src/displays/, tests/). Verified with CPython 3.10.6 and these versions; the figures
+# and tables are byte-identical to the paper's with them. Figures 1, 2 and S1 (TikZ) also need pdflatex: they were
+# made with TeX Live 2026 (pdfTeX 1.40.29).
 pandas==2.3.3
 numpy==2.2.6
 matplotlib==3.10.9

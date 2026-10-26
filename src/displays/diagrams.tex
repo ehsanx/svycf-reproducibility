@@ -1,0 +1,70 @@
+% The paper's conceptual figures, one standalone PDF per job name; diagram_displays.py builds them:
+%   fig_targets          Figure 1, populations and targets
+%   fig_folds_variances  Figure 2, whole-PSU folds and the two variance scales
+%   figS_proof_map       Figure S1, the four terms of the expansion (a standalone copy; the supplement typesets the
+%                        same \FigureProofMap with cross-references for the lemma numbers)
+% By hand, from this folder:   pdflatex -jobname=fig_targets diagrams.tex
+% The diagrams are those of diagram_macros.tex, at the paper's scale, in the paper's fonts and notation.
+\RequirePackage{fix-cm}% scalable Computer Modern, so the diagram text is set at its final size
+\documentclass[border=2pt]{standalone}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,patterns,decorations.pathreplacing}
+% Reproducible bytes: no dates or build identifiers in the PDF.
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\pdfsuppressptexinfo=-1
+
+% Math macros as in the paper.
+\newcommand{\PN}{\mathbb{P}_N}
+\newcommand{\Pz}{P_0}
+\newcommand{\Pzcl}{\mathcal{P}_0^{\mathrm{cl}}}
+\newcommand{\psihat}{\widehat\psi_w}
+\newcommand{\swor}{\sigma_{m,\mathrm{wor}}}
+
+% Scale of the poster drawings that sets the text at about 9--10 pt (the supplement uses the same value).
+\newcommand{\DgScale}{0.41}
+\input{diagram_macros}
+\renewcommand{\DesignUnsampledLabel}{PSU not sampled}
+\renewcommand{\TargetsBoxWidth}{9.2}
+\renewcommand{\TargetsBoxHeight}{7.6}
+\hyphenpenalty=10000 \exhyphenpenalty=10000 % no hyphenated words in the boxes
+% The two repeated-sampling frameworks, as braces under the boxes they vary.
+\renewcommand{\TargetsExtra}{%
+  \begin{scope}[decoration={brace,mirror,amplitude=\Dg{9}pt},line width=\Dg{2}pt,draw=inkmuted,
+      font=\DgFont{22}{26}]
+    \draw[decorate] ([yshift=-\Dg{3}mm]fp.south west) -- ([yshift=-\Dg{3}mm]sm.south east)
+      node[midway,below=\Dg{6}mm]{\emph{design-based} repetitions: population fixed; sample and folds redrawn};
+    \draw[decorate] ([yshift=-\Dg{22}mm]sp.south west) -- ([yshift=-\Dg{22}mm]sm.south east)
+      node[midway,below=\Dg{6}mm]{\emph{joint model--design} repetitions: population regenerated, then sampled};
+  \end{scope}}
+
+\newif\ifdiagram
+% #1 job name, #2 what to typeset for it
+\newcommand{\IfJob}[2]{\ifnum\pdfstrcmp{\jobname}{#1}=0 #2\fi}
+\newcommand{\PanelLabel}[1]{{\DgFont{23}{27}\bfseries #1}}
+
+\begin{document}%
+\color{ink}%
+\IfJob{fig_targets}{\diagramtrue
+  \TargetsSchematic{\textbf{Super-population}\\[\Dg{2}mm]cluster law $\Pzcl$\\generates PSUs\\and their
+    units\\[\Dg{2}mm]target $\Psi=\Pz\varphi(\cdot;\eta_0)$\\($\Pz$: induced unit law)}%
+  {\textbf{Finite population}\\[\Dg{2}mm]the realized strata,\\PSUs and units\\[\Dg{2}mm]\textbf{primary target}\\
+    $\Psi_N=\PN\varphi(\cdot;\eta_0)$}%
+  {\textbf{Survey sample}\\[\Dg{2}mm]sampled PSUs, then\\units within them\\[\Dg{2}mm]estimate $\psihat$\\and its
+    reported\\standard error}%
+  {population\\generation}{two-stage\\sampling}}%
+\IfJob{fig_folds_variances}{\diagramtrue
+  \begin{tabular}{@{}l@{}}
+  \PanelLabel{(a) Whole-PSU folds}\\[\Dg{3}mm]
+  \DesignSchematic{stratum}{PSUs}{units}{fold}\\[\Dg{14}mm]
+  \PanelLabel{(b) Two variance scales}\\[\Dg{3}mm]
+  \VarianceBars{$\sigma_m^2$: variance targeted by the usual survey SE$^2$}%
+    {$\swor^2$: without-replacement variance of the leading term}%
+    {$\sum_h(1-f_h)B_h$}{$\sum_hf_hB_h$}{$\sum_hV_h$}{$\Delta_m=\sum_h f_hB_h$}
+  \end{tabular}}%
+% The supplement's lemma numbers: diagram_displays.py checks them against the supplement's .aux when it is present.
+\IfJob{figS_proof_map}{\diagramtrue\FigureProofMap{1}{4}{3}{2}}%
+\ifdiagram\else\errmessage{diagrams.tex: no figure is named \jobname}\fi
+\end{document}

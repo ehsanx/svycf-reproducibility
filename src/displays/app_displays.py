@@ -4,6 +4,8 @@ Called by make_sim_displays.py, which supplies its formatting helpers. Reads onl
 results/application/ (no record-level file is opened, nothing is estimated) and writes:
     results/displays/main/tab2_application.tex       (main-text Table 2 rows)
     results/displays/supplement/tabS_app_*.tex        (supplement S4 tables)
+    results/displays/main/fig_application.pdf        (main-text Figure 4; also reads the 500 per-resample
+                                                      estimates and standard errors of the Malawi cross-fitted TMLE)
 and \\App... macros added to the shared number file.
 
 Method-to-reference mapping (resampling script src/application/R/02-resample.R and the protocol):
@@ -14,6 +16,8 @@ The mapping is asserted below against the `reference` column that the calibratio
 import re
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 SURVEYS = [("MW_SPA_2013-14", "Malawi 2013--14", "Mw"), ("HT_SPA_2017-18", "Haiti 2017--18", "Hts"),
@@ -108,6 +112,62 @@ def build(root, out_main, out_supp, mac, num, interval, longtable, hdr):
              < cal[c].query("method == 'Fully-Aware'").iloc[0].var_ratio for c, _, _ in SURVEYS)
     assert e2
 
+    # ---------------- main Figure 4: reported and empirical uncertainty
+    rep = pd.read_csv(res / "resample_MW_SPA_2013-14_f250_replicates.csv").query("method == 'Fully-Aware-CF'")
+    assert len(rep) == 500 and (rep.status == "ok").all()
+    b, se = rep.b.to_numpy(), rep.se.to_numpy()
+    sd, mse = b.std(ddof=1), se.mean()
+    assert abs(sd - mw.mc_sd) < 1e-12 and abs(mse - mw.mean_se) < 1e-12
+    # The variance ratio and the SE/SD ratio differ in scale and because mean(se^2) != mean(se)^2:
+    # R_var = R_SE^2 + Var_R(se)/SD^2, with Var_R the divisor-R variance of the 500 standard errors.
+    assert abs((se ** 2).mean() / sd ** 2 - mw.var_ratio) < 1e-9
+    assert abs(mw.mean_se_over_sd ** 2 + se.var() / sd ** 2 - mw.var_ratio) < 1e-9
+    assert mw.mean_se_over_sd == max(r.mean_se_over_sd for r in prim)    # the largest SE/SD of the six
+    mac("AppMwTmleSdPp", num(100 * sd, 2))
+    mac("AppMwTmleMeanSePp", num(100 * mse, 2))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6.45, 2.55), gridspec_kw={"width_ratios": [1, 1.12]})
+    fig.subplots_adjust(left=0.035, right=0.985, top=0.9, bottom=0.17, wspace=0.42)
+    x, s1, s2 = 100 * b, 100 * sd, 100 * mse
+    xs = np.linspace(-18, 18, 400)
+    dens = lambda s: np.exp(-0.5 * ((xs - x.mean()) / s) ** 2) / (s * np.sqrt(2 * np.pi))  # noqa: E731
+    ax1.hist(x, bins=np.arange(-17, 17.1, 1.5), density=True, color="#d9d9d9", edgecolor="white", linewidth=0.6)
+    ax1.plot(xs, dens(s1), color="k", lw=1.2, label="normal curve, SD of the estimates (%.2f pp)" % s1)
+    ax1.plot(xs, dens(s2), color="#D55E00", lw=1.2, ls=(0, (4, 2)),
+             label="normal curve, mean reported SE (%.2f pp)" % s2)
+    top = dens(s1).max()
+    ax1.vlines(100 * mw.reference, 0, 1.12 * top, color="#4d4d4d", lw=0.9, ls=":", label="whole-frame reference value")
+    ax1.set_xlim(-18, 18)
+    ax1.set_ylim(0, 1.7 * top)
+    ax1.set_yticks([])
+    ax1.spines["left"].set_visible(False)
+    ax1.set_xlabel("urban $-$ rural difference, percentage points")
+    ax1.set_title("(a) Malawi 2013–14, cross-fitted TMLE: 500 samples", loc="left")
+    ax1.legend(loc="upper left", frameon=False, fontsize=7, handlelength=2.2, borderaxespad=0.1)
+    y, ticks = 0.0, []
+    for code, name, key in SURVEYS:
+        for meth, mk, col in (("Fully-Aware-CF", "o", "#0072B2"), ("AIPW-CF", "s", "#7f7f7f")):
+            r = cal[code].query("method == @meth").iloc[0]
+            ax2.errorbar(r.var_ratio, y, xerr=2 * r.var_ratio_mcse, fmt=mk, color=col, ms=4, elinewidth=1.1,
+                         capsize=0)
+            y -= 1
+        ticks.append((y + 1.5, name.replace("--", "–")))
+        y -= 0.8
+    ax2.axvline(1, color="k", lw=0.8)
+    ax2.axvline(bound, color="#4d4d4d", lw=0.9, ls=(0, (4, 2)))
+    ax2.text(bound + 0.01, 0.75, "$1/(1-f)$", fontsize=7, va="center", color="#4d4d4d")
+    ax2.set_yticks([t[0] for t in ticks])
+    ax2.set_yticklabels([t[1] for t in ticks])
+    ax2.tick_params(axis="y", length=0)
+    ax2.set_ylim(y + 0.3, 1.3)
+    ax2.set_xlim(0.9, 1.9)
+    ax2.set_xlabel("mean estimated variance / empirical variance")
+    ax2.set_title("(b) variance ratio, $\\pm2$ MCSE", loc="left")
+    ax2.legend(handles=[plt.Line2D([], [], color="#0072B2", marker="o", ls="none", ms=4, label="cross-fitted TMLE"),
+                        plt.Line2D([], [], color="#7f7f7f", marker="s", ls="none", ms=4, label="cross-fitted AIPW")],
+               loc="lower right", frameon=False, fontsize=7, handletextpad=0.3, borderaxespad=0.1)
+    fig.savefig(out_main / "fig_application.pdf", metadata={"CreationDate": None})  # no timestamp: reproducible bytes
+    plt.close(fig)
+
     # ---------------- main Table 2
     rows = []
     for code, name, key in SURVEYS:
@@ -150,7 +210,8 @@ def build(root, out_main, out_supp, mac, num, interval, longtable, hdr):
     longtable("tabS_app_arms.tex", "@{}llrrrrr@{}",
               "survey & method & variance ratio (MCSE) & SE/SD & bias, pp (MCSE) & coverage, \\% (MCSE) & CI width, pp",
               body,
-              "All eight methods, each on 500 of 500 successful resamples per survey. The "
+              "Results for all eight methods across 500 resamples per survey; each method succeeded in all "
+              "resamples. The "
               "variance ratio is the mean estimated variance divided by the empirical variance of the estimates "
               "across resamples, with a replicate-bootstrap Monte Carlo standard error; SE/SD is the mean estimated "
               "standard error divided by the empirical standard deviation (not the square root of the variance "
@@ -194,4 +255,4 @@ def build(root, out_main, out_supp, mac, num, interval, longtable, hdr):
               "Census overlap diagnostic: out-of-fold SuperLearner estimates of $P(A=1\\mid C)$ on the whole frame, for "
               "the primary and sensitivity covariate sets. A covariate set is flagged as overlap-strained when "
               "more than 10\\% of values fall outside $[0.05,0.95]$; this is a model-based diagnostic, not a proof of "
-              "positivity, and it was never used to respecify an analysis.", "tab:S-app-overlap", size=r"\scriptsize")
+              "positivity.", "tab:S-app-overlap", size=r"\scriptsize")

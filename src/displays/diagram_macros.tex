@@ -1,0 +1,157 @@
+% TikZ diagrams of the paper's conceptual figures, also used by the authors' posters: the survey design with
+% whole-PSU folds, populations and targets, the two variance scales, and the map of the four terms of the expansion.
+% diagrams.tex typesets Figures 1-2 and a standalone copy of Figure S1 (via diagram_displays.py); the supplement
+% typesets Figure S1 itself, so that its lemma numbers are cross-references.
+% Needs amsmath, bm, xcolor and TikZ with the libraries arrows.meta, positioning, decorations.pathreplacing and
+% patterns. A document may define the colour names below before this file (the posters do); otherwise the paper's
+% palette applies.
+%
+% \DgScale multiplies every length and font size. The default 1 gives the posters' print sizes; the paper sets a
+% smaller value first, so its text is typeset at its final size (fonts must be scalable there: fix-cm or lmodern).
+\providecommand{\DgScale}{1}
+\newcommand{\Dg}[1]{\fpeval{(#1)*\DgScale}}
+\newcommand{\DgFont}[2]{\fontsize{\Dg{#1}}{\Dg{#2}}\selectfont}
+
+% Paper palette (the hues of the simulation figure).
+\providecolor{ink}{HTML}{1F1F1E}
+\providecolor{inkmuted}{HTML}{4D4D4D}
+\providecolor{inkfaint}{HTML}{B3B3B3}
+\providecolor{cblue}{HTML}{0072B2}
+\providecolor{corange}{HTML}{E69F00}
+\providecolor{cgray}{HTML}{7F7F7F}
+\providecolor{cwarn}{HTML}{D55E00}
+
+% ---------------------------------------------------------------- design + cross-fitting schematic
+% #1 stratum word, #2 cluster word (plural), #3 unit word (plural), #4 fold word
+\newcommand{\DesignUnsampledLabel}{not sampled}
+\newcommand{\DesignSchematic}[4]{%
+\begin{tikzpicture}[x=\Dg{1}cm,y=\Dg{1}cm,font=\DgFont{22}{26}]
+  \foreach \s in {0,1,2} {
+    \begin{scope}[xshift=\s*\Dg{11.55}cm]
+      \draw[rounded corners=\Dg{6}mm,line width=\Dg{2}pt,draw=inkfaint,fill=white] (0,0) rectangle (10.8,7.6);
+      \node[anchor=north west,font=\DgFont{23}{27}\bfseries,text=inkmuted] at (0.35,7.45)
+        {#1 \pgfmathparse{int(\s+1)}\pgfmathresult};
+      \foreach \r in {0,1} \foreach \c in {0,...,3} {
+        \pgfmathsetmacro\x{1.5+\c*2.6}\pgfmathsetmacro\y{1.55+\r*2.6}
+        \draw[line width=\Dg{1.6}pt,draw=inkfaint,fill=white] (\x,\y) circle (1.05);
+        \foreach \dx/\dy in {-0.45/0.28,0/0.5,0.45/0.28,-0.45/-0.28,0/-0.5,0.45/-0.28}
+          \fill[inkfaint] (\x+\dx,\y+\dy) circle (0.15);
+      }
+    \end{scope}
+  }
+  % sampled PSUs: stratum / column / row / fold colour
+  \foreach \s/\c/\r/\fc in {0/0/1/cblue,0/2/0/corange,1/1/0/corange,1/3/1/cblue,2/0/0/cblue,2/2/1/corange} {
+    \pgfmathsetmacro\x{\s*11.55+1.5+\c*2.6}\pgfmathsetmacro\y{1.55+\r*2.6}
+    \draw[line width=\Dg{4}pt,draw=\fc,fill=\fc!14] (\x,\y) circle (1.05);
+    \foreach \dx/\dy/\on in {-0.45/0.28/1,0/0.5/0,0.45/0.28/1,-0.45/-0.28/0,0/-0.5/1,0.45/-0.28/0} {
+      \ifnum\on=1 \fill[ink] (\x+\dx,\y+\dy) circle (0.19);
+      \else \fill[inkfaint] (\x+\dx,\y+\dy) circle (0.15); \fi
+    }
+  }
+  % legend row
+  \begin{scope}[yshift=\Dg{-1.25}cm]
+    \draw[line width=\Dg{1.6}pt,draw=inkfaint,fill=white] (0.6,0) circle (0.42);
+    \node[anchor=west] (l1) at (1.15,0) {\DesignUnsampledLabel};
+    \draw[line width=\Dg{3}pt,draw=cblue,fill=cblue!14] ([xshift=\Dg{12}mm]l1.east) circle (0.42);
+    \node[anchor=west] (l2) at ([xshift=\Dg{17.5}mm]l1.east) {#4 1};
+    \draw[line width=\Dg{3}pt,draw=corange,fill=corange!14] ([xshift=\Dg{12}mm]l2.east) circle (0.42);
+    \node[anchor=west] (l3) at ([xshift=\Dg{17.5}mm]l2.east) {#4 2};
+    \fill[ink] ([xshift=\Dg{11}mm]l3.east) circle (0.19);
+    \node[anchor=west] (l4) at ([xshift=\Dg{15}mm]l3.east) {sampled #3};
+    \fill[inkfaint] ([xshift=\Dg{11}mm]l4.east) circle (0.15);
+    \node[anchor=west] at ([xshift=\Dg{15}mm]l4.east) {other #3};
+  \end{scope}
+\end{tikzpicture}}
+
+% ---------------------------------------------------------------- populations and targets
+% #1 model box text, #2 population box text, #3 sample box text, #4 left arrow label, #5 right arrow label.
+% The boxes are named sp, fp and sm; \TargetsExtra is drawn last, inside the picture (empty by default).
+\newcommand{\TargetsBoxWidth}{8.0}
+\newcommand{\TargetsBoxHeight}{5.2}
+\newcommand{\TargetsGap}{4.2}
+\newcommand{\TargetsExtra}{}
+\newcommand{\TargetsSchematic}[5]{%
+\begin{tikzpicture}[font=\DgFont{24}{28},
+    blk/.style={draw=##1,line width=\Dg{2.5}pt,fill=##1!8,rounded corners=\Dg{5}mm,align=center,
+      inner sep=\Dg{4}mm,text width=\Dg{\TargetsBoxWidth}cm,minimum height=\Dg{\TargetsBoxHeight}cm},
+    arr/.style={-{Stealth[length=\Dg{6}mm,width=\Dg{5}mm]},line width=\Dg{3}pt,draw=inkmuted}]
+  \node[blk=cgray]  (sp) {#1};
+  \node[blk=cblue,right=\Dg{\TargetsGap}cm of sp] (fp) {#2};
+  \node[blk=corange,right=\Dg{\TargetsGap}cm of fp] (sm) {#3};
+  \draw[arr] (sp) -- node[above=\Dg{2}mm,align=center,font=\DgFont{22}{25}]{#4} (fp);
+  \draw[arr] (fp) -- node[above=\Dg{2}mm,align=center,font=\DgFont{22}{25}]{#5} (sm);
+  \TargetsExtra
+\end{tikzpicture}}
+
+% ---------------------------------------------------------------- two variance scales (stylized, f = 0.25)
+% Row 1 (what the usual SE^2 targets) = (1-f)B + fB + V; row 2 (design variance) = (1-f)B + V. The hatched fB piece
+% sits inside row 1, so the gap is visibly the extra amount in the usual SE^2.
+% #1 row-1 title, #2 row-2 title, #3 label of (1-f)B, #4 label of the extra fB, #5 label of V, #6 gap label
+\newcommand{\VarianceBars}[6]{%
+\begin{tikzpicture}[x=\Dg{2.25}cm,y=\Dg{1}cm,font=\DgFont{21}{25}]
+  \def\B{8}\def\V{4.4}\def\f{0.25}
+  \pgfmathsetmacro\bw{(1-\f)*\B}
+  % row 1: with-replacement target
+  \node[anchor=south west,font=\DgFont{22}{26}\bfseries] at (0,2.75) {#1};
+  \fill[cblue] (0,1.2) rectangle (\bw,2.6);
+  \fill[cblue!35] (\bw+0.03,1.2) rectangle (\B,2.6);
+  \fill[pattern=north east lines,pattern color=cwarn] (\bw+0.03,1.2) rectangle (\B,2.6);
+  \draw[line width=\Dg{2.4}pt,draw=cwarn] (\bw+0.03,1.2) rectangle (\B,2.6);
+  \fill[cgray!55] (\B+0.03,1.2) rectangle (\B+\V,2.6);
+  \node[text=white,font=\DgFont{21}{25}\bfseries] at (\bw/2,1.9) {#3};
+  \node[font=\DgFont{21}{25}\bfseries] at (\B+\V/2,1.9) {#5};
+  \node[text=cwarn,font=\DgFont{20}{23}\bfseries,fill=white,rounded corners=\Dg{2}pt,inner sep=\Dg{2}pt]
+    at ({(\bw+\B)/2},1.9) {#4};
+  % row 2: without-replacement design variance
+  \node[anchor=south west,font=\DgFont{22}{26}\bfseries] at (0,-0.85) {#2};
+  \fill[cblue] (0,-2.4) rectangle (\bw,-1.0);
+  \fill[cgray!55] (\bw+0.03,-2.4) rectangle (\bw+\V,-1.0);
+  \node[text=white,font=\DgFont{21}{25}\bfseries] at (\bw/2,-1.7) {#3};
+  \node[font=\DgFont{21}{25}\bfseries] at (\bw+\V/2,-1.7) {#5};
+  % the gap: where row 2 stops short of row 1
+  \draw[line width=\Dg{2}pt,draw=cwarn,dash pattern=on \Dg{7}pt off \Dg{5}pt] (\bw+\V+0.03,-2.4) rectangle (\B+\V,-1.0);
+  \draw[decorate,decoration={brace,amplitude=\Dg{8}pt,mirror},line width=\Dg{2}pt,draw=cwarn]
+    (\bw+\V+0.03,-2.6) -- (\B+\V,-2.6);
+  \node[anchor=north east,text=cwarn,align=right,font=\DgFont{21}{24}\bfseries]
+    at (\B+\V,-3.0) {#6};
+\end{tikzpicture}}
+
+% ---------------------------------------------------------------- the four terms of the expansion
+% One card: #1 colour, #2 symbol (math), #3 heading, #4 text, #5 the result that controls the term.
+\newcommand{\ProofCardWidth}{7.75}
+\newcommand{\ProofCardHeight}{8.3}
+\newcommand{\ProofCardStep}{8.85}
+\newcommand{\ProofCard}[5]{\parbox[t][\Dg{\ProofCardHeight}cm][t]{\Dg{\ProofCardWidth}cm}{\raggedright
+  {\DgFont{34}{38}\color{#1}$\bm{#2}$}\\[\Dg{1}mm]{\bfseries #3}\par\vspace{\Dg{2}mm}#4\par\vfill\textbf{#5}}}
+% #1-#4 the cards of S_des, T_1, T_2 and S_mod; #5 label over the first card, #6 label over the other three
+\newcommand{\ProofMap}[6]{%
+\begin{tikzpicture}[x=\Dg{1}cm,y=\Dg{1}cm,font=\DgFont{23}{27},
+  cardbox/.style={draw=##1,line width=\Dg{2.5}pt,fill=##1!7,rounded corners=\Dg{4}mm,inner sep=\Dg{3.5}mm,
+    anchor=north west}]
+  \node[cardbox=cblue] (a) at (0,0) {#1};
+  \node[cardbox=cgray] (b) at (\ProofCardStep,0) {#2};
+  \node[cardbox=cgray] (c) at (\fpeval{2*\ProofCardStep},0) {#3};
+  \node[cardbox=cgray] (d) at (\fpeval{3*\ProofCardStep},0) {#4};
+  \draw[line width=\Dg{3}pt,cblue] ([yshift=\Dg{4}mm]a.north west) -- ([yshift=\Dg{4}mm]a.north east)
+    node[midway,above=\Dg{1}mm,font=\DgFont{22}{26}\bfseries,text=cblue]{#5};
+  \draw[line width=\Dg{3}pt,inkmuted] ([yshift=\Dg{4}mm]b.north west) -- ([yshift=\Dg{4}mm]d.north east)
+    node[midway,above=\Dg{1}mm,font=\DgFont{22}{26}\bfseries,text=inkmuted]{#6};
+\end{tikzpicture}}
+
+% ---------------------------------------------------------------- the paper's Figure S1
+% The two decompositions over the four cards. #1-#4: the numbers of the lemmas that control S_des, T_1, T_2 and S_mod
+% (the supplement passes cross-references; the standalone copy passes the numbers). Needs \psihat.
+\newcommand{\FigureProofMap}[4]{%
+\begin{tabular}{@{}c@{}}
+{\DgFont{24}{28}$\displaystyle\psihat-\Psi_N=S_{\mathrm{des}}+T_1+T_2,\qquad \Psi_N-\Psi=S_{\mathrm{mod}}$}\\[\Dg{8}mm]
+\renewcommand{\ProofCardHeight}{11.4}\hyphenpenalty=10000 \exhyphenpenalty=10000
+\ProofMap{\ProofCard{cblue}{S_{\mathrm{des}}}{leading design term}{Fixed-function design CLT, conditional on the
+  finite population; consistency of the variance estimator}{Lemma~#1}}%
+  {\ProofCard{inkmuted}{T_1}{empirical-process term}{Controlled by complement stability, proved from the cluster
+  model; needs only $r_m\to0$}{Lemma~#2}}%
+  {\ProofCard{inkmuted}{T_2}{second-order term}{Neyman orthogonality: bounded by the product of the nuisance
+  errors}{Lemma~#3}}%
+  {\ProofCard{inkmuted}{S_{\mathrm{mod}}}{census versus model}{Negligible if $m/M_{\mathrm{pop}}\to0$; needed only
+  for the super-population target $\Psi$}{Lemma~#4}}%
+  {design layer}{model layer: clusters i.i.d.\ within strata}
+\end{tabular}}

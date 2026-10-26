@@ -1,9 +1,14 @@
 file,paper_label,paper_number,inputs
-results/displays/main/fig1_simulation.pdf,fig:sim,main text 1,"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv)"
+results/displays/main/fig1_simulation.pdf,fig:sim,main text 3,"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv)"
+results/displays/main/fig_application.pdf,fig:app,main text 4,results/application/
+results/displays/main/fig_folds_variances.pdf,fig:folds-variances,main text 2,none (TikZ diagram: src/displays/diagrams.tex)
+results/displays/main/fig_targets.pdf,fig:targets,main text 1,none (TikZ diagram: src/displays/diagrams.tex)
 results/displays/main/sim_numbers.tex,number macros,macros used in the text,"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv); results/application/"
 results/displays/main/tab1_coverage.tex,tab:sim,main text 1 (panel B),"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv)"
 results/displays/main/tab1_estimates.tex,tab:sim,main text 1,"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv)"
 results/displays/main/tab2_application.tex,tab:app,main text 2,results/application/
+results/displays/supplement/figS_bridge.pdf,fig:bridge,supplement S2,"results/simulation/ (grading, preparation, execution-check, unresolved_t2_by_cell_arm.csv)"
+results/displays/supplement/figS_proof_map.pdf,fig:proof-map,supplement S1 (standalone copy),none (TikZ diagram: src/displays/diagrams.tex)
 results/displays/supplement/tabS_app_arms.tex,tab:S-app-arms,supplement S16,results/application/
 results/displays/supplement/tabS_app_frames.tex,tab:S-app-frames,supplement S15,results/application/
 results/displays/supplement/tabS_app_overlap.tex,tab:S-app-overlap,supplement S18,results/application/

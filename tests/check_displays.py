@@ -3,7 +3,8 @@
 
     python tests/check_displays.py
 
-Exit status 0 when every file is identical (no file missing, none extra).
+Exit status 0 when every file is identical (no file missing, none extra). Building Figures 1, 2 and S1 needs pdflatex
+on the PATH; config/python-requirements.txt records the TeX version they were made with.
 """
 import os
 import subprocess
@@ -12,6 +13,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+TIKZ = {"main/fig_targets.pdf", "main/fig_folds_variances.pdf", "supplement/figS_proof_map.pdf"}
 
 
 def files(d):
@@ -29,4 +31,6 @@ print("%d of %d display files identical" % (len(same), len(ref)))
 for label, xs in (("differ", differ), ("not rebuilt", missing), ("extra", extra)):
     for x in xs:
         print("  %s: %s" % (label, x))
+if TIKZ & set(differ):
+    print("  (the TikZ figures are PDF output of pdflatex: another TeX version can change their bytes, not their content)")
 sys.exit(0 if len(same) == len(ref) and not extra else 1)

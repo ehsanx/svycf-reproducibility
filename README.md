@@ -1,12 +1,12 @@
-# Reproduction materials: design-based central limit theorem for cross-fitted influence functions
+# Reproduction materials: finite-population inference for cross-fitted estimators of treatment contrasts in stratified multistage surveys
 
 Code, recorded results and checks for
 
-> Karim, M. E. A design-based central limit theorem for cross-fitted influence functions under stratified multistage
-> sampling. *(Journal details will be added on publication.)*
+> Karim, M. E. Finite-population inference for cross-fitted estimators of treatment contrasts in stratified
+> multistage surveys. *(Journal details will be added on publication.)*
 
 M. Ehsan Karim, University of British Columbia (ORCID [0000-0002-0346-2871](https://orcid.org/0000-0002-0346-2871)).
-This is version v1.0.0 of the reproduction materials.
+This is version v1.1.0 of the reproduction materials.
 
 The paper has two numerical parts:
 
@@ -14,9 +14,11 @@ The paper has two numerical parts:
 - a **resampling study** on three Service Provision Assessment (SPA) surveys (Section 5; Supplement S4).
 
 This repository contains the implementations and reproduction materials for both. The supplied summaries reproduce
-the paper's tables, figure and reported numbers without refitting models, and the sections below explain how to
+the paper's tables, figures and reported numbers without refitting models, and the sections below explain how to
 rerun each study from its required inputs. The per-replicate simulation output is in two archives attached to the
 release ([Recorded results](#recorded-results)). The repository contains no survey records.
+Numerical validation notes and known diagnostics are collected in
+[Implementation notes and limitations](#implementation-notes-and-limitations).
 
 ## Contents
 
@@ -24,12 +26,12 @@ release ([Recorded results](#recorded-results)). The repository contains no surv
 |---|---|
 | `src/simulation/` | The simulation engine: an R project with its own estimators, sampler and variance code (`R/`), job entry points (`runs/`), the locked environment (`renv.lock`, `renv/`, `env/`), quadrature rules (`grids/`) and unit tests (`tests/`) |
 | `src/application/R/` | The SPA analysis: unpacking, count audit, resampling and estimation |
-| `src/displays/` | The script that builds every simulation and SPA display and number of the paper |
+| `src/displays/` | The scripts that build every display and number of the paper: the simulation and SPA displays, and the TikZ diagrams of the conceptual figures (`diagrams.tex`, `diagram_macros.tex`) |
 | `scripts/simulation/`, `scripts/application/` | Setup, Slurm submission and job scripts; assembly of the recorded per-replicate output |
 | `config/` | Settings and machine-readable records: cell tables, frozen inputs, SPA settings and package pins, data files, cluster settings template, Python versions, identities, provenance and archive checksums |
 | `results/simulation/`, `results/application/` | Recorded summaries of both studies |
-| `results/displays/` | The paper's figure, tables and number macros, as built from `results/` |
-| `results/index-cells.csv`, `results/index-displays.csv` | Index from simulation cells and SPA surveys to result files and to the paper's tables and figure |
+| `results/displays/` | The paper's figures, tables and number macros, as built from `results/` |
+| `results/index-cells.csv`, `results/index-displays.csv` | Index from simulation cells and SPA surveys to result files and to the paper's tables and figures |
 | `tests/` | Checks: display rebuild, provenance, audit of the per-replicate output, task-7 recovery, independent recomputation of key estimates |
 | `vendor/svytmle_0.1.2.tar.gz` | The exact `svytmle` 0.1.2 build used by the SPA study (md5 `c976da847d9d28069123835b4bb71281`) |
 
@@ -40,7 +42,8 @@ Run outputs go to `outputs/` and restricted survey data to `data/`; both are ign
 Run every command from the repository root.
 
 - **Displays:** Python 3.10 with the versions in `config/python-requirements.txt` (pandas 2.3.3, numpy 2.2.6,
-  matplotlib 3.10.9).
+  matplotlib 3.10.9), and a TeX distribution with pdflatex (standalone, TikZ, fix-cm) for the three conceptual
+  figures, which were made with TeX Live 2026 (pdfTeX 1.40.29).
 - **Simulation:** R with a C/C++/Fortran toolchain and a Slurm cluster. The recorded runs used R 4.4.0 on Linux
   (UBC ARC Sockeye); `src/simulation/renv.lock` records R 4.5.1, the version used for the inputs built locally, and
   setup accepts either. The 69 locked packages are restored by `scripts/simulation/setup.sh` (Route 2).
@@ -54,14 +57,20 @@ to reproduce the reported analyses.
 ## Paper-to-code map
 
 Every display of the paper is built by `src/displays/make_sim_displays.py` (with `src/displays/app_displays.py` for
-the SPA displays) from the files in `results/simulation/` and `results/application/`:
+the SPA displays, and `src/displays/diagram_displays.py` for the TikZ diagrams, which read no data) from the files in
+`results/simulation/` and `results/application/`:
 
 | Output | In the paper |
 |---|---|
-| `results/displays/main/fig1_simulation.pdf` | Figure 1 |
+| `results/displays/main/fig_targets.pdf` | Figure 1 (populations and targets; TikZ) |
+| `results/displays/main/fig_folds_variances.pdf` | Figure 2 (whole-PSU folds and the two variance scales; TikZ) |
+| `results/displays/main/fig1_simulation.pdf` | Figure 3 (simulation results) |
+| `results/displays/main/fig_application.pdf` | Figure 4 (SPA: reported and empirical uncertainty) |
 | `results/displays/main/tab1_estimates.tex`, `tab1_coverage.tex` | Table 1, panels A and B |
 | `results/displays/main/tab2_application.tex` | Table 2 |
 | `results/displays/main/sim_numbers.tex` | every number quoted in the text, as LaTeX macros (`\Sim...`, `\App...`) |
+| `results/displays/supplement/figS_proof_map.pdf` | Figure S1 (the four terms of the expansion; TikZ). The supplement typesets the same diagram itself, with cross-referenced lemma numbers; this file is a standalone copy |
+| `results/displays/supplement/figS_bridge.pdf` | Figure S2 (vanishing-fraction trajectory of the two targets) |
 | `results/displays/supplement/tabS_*.tex` | Supplement tables |
 | `results/displays/extended/tabS_*.tex`, `rec_index.tex` | Tables not printed in the paper: oracle cells at fixed populations, the unequal-allocation pair, the deterministic array, per-population summaries, preparation and dry-run checks, and every estimate with its classification against its benchmark region |
 
@@ -72,7 +81,7 @@ the SPA displays) from the files in `results/simulation/` and `results/applicati
 
 | Route | Needs | Recorded cost |
 |---|---|---|
-| [1. Rebuild the displays](#1-rebuild-the-displays) from the recorded results | Python 3.10 with pandas, numpy and matplotlib | under a minute |
+| [1. Rebuild the displays](#1-rebuild-the-displays) from the recorded results | Python 3.10 with pandas, numpy and matplotlib; pdflatex | under a minute |
 | [2. Rerun the simulation](#2-rerun-the-simulation) | R 4.4 or 4.5, a C/C++/Fortran toolchain, a Slurm cluster | 807 allocated core-hours |
 | [3. Rerun the SPA study](#3-rerun-the-spa-study) | Approved access to DHS Program data, R, a C/C++/Fortran toolchain, a Slurm cluster | 287 allocated core-hours |
 
@@ -88,7 +97,8 @@ python tests/check_displays.py
 ```
 
 `check_displays.py` runs `src/displays/make_sim_displays.py` into a temporary folder and compares every file, byte for
-byte, with `results/displays/`; it prints `38 of 38 display files identical` and exits 0. To write the files in
+byte, with `results/displays/`; it prints `43 of 43 display files identical` and exits 0. The three TikZ figures
+are pdflatex output: another TeX version can change their bytes, not their content. To write the files in
 place instead, run `python src/displays/make_sim_displays.py` (set `DISPLAY_OUT` to write elsewhere). The script
 reads only `results/simulation/` and `results/application/` (inputs listed at the top of the script); the outputs
 are listed in the [Paper-to-code map](#paper-to-code-map).
@@ -193,12 +203,12 @@ in memory; only aggregates are written.
 |---|---|
 | `grading/grades.csv` | Every statistic of every cell and arm: estimate, 95% interval, benchmark region, classification, basis, failed and unresolved replicates |
 | `grading/claims.csv`, `population_indexed_summary.csv` | One classification per cell and statistic; population-indexed counts for design-conditional cells |
-| `grading/completeness.csv`, `required_checks.csv`, `failed_arms.csv`, `blocked.csv` | Completeness against the design (every cell complete), implementation checks run in every replicate (13,067,483 required, 1 failed), fitting failures (none), statistics withheld by a failed check |
+| `grading/completeness.csv`, `required_checks.csv`, `failed_arms.csv`, `blocked.csv` | Completeness, implementation checks, fitting failures and statistics withheld by a failed check; see [Simulation validation](#simulation-validation) |
 | `grading/provenance.csv`, `provenance_checks.csv`, `round3_inputs.csv`, `grading_manifest.json` | Run folders read and their identities; checksums of the preparation and dry-run records read |
-| `grading/displays/*.csv` | The tables behind Figure 1 and the simulation tables |
+| `grading/displays/*.csv` | The tables behind Figures 3 and S2 and the simulation tables |
 | `preparation/` | Census quantities of the production populations, the frozen κ_AE record and the preparation checks |
 | `execution-check/` | Summary of the dry run of every cell (implementation and running time), with the learner-rate and control-calibration checks the summaries read |
-| `unresolved_t2_by_cell_arm.csv` | Replicates whose remainder T₂ could not be resolved numerically (80; recorded as missing, estimates kept) |
+| `unresolved_t2_by_cell_arm.csv` | Counts of numerically unresolved remainder entries by cell and arm; see [Simulation validation](#simulation-validation) |
 | `production_resources.csv` | Per cell: array tasks, longest task, time limit, peak memory |
 | `task7_timed_out_printed.csv` | Values printed by a run of task 7 of P-e3-ctrl-m400 that timed out; `tests/verify_task7.py` compares them with the archived task |
 
@@ -220,14 +230,8 @@ reports the estimates and intervals. The values are:
 In `blocked.csv`, a statistic is withheld because an implementation check of its cell failed; `failed_arms.csv` lists
 fitting failures (none). Missing values are `NA` in CSV files and `---` in tables.
 
-One implementation check failed. In the with-replacement code-check cell `P-wr-calib`, 1 of its 112,016 required
-checks failed, in replicate 4611 of 8,000 (population 1): the total of the linearized score computed by the `survey`
-package and the direct cluster-total formula disagreed beyond the tolerance
-`1e-12 * max(abs(total_direct), 1e-300) + 1e-18`, about 6.5e-18 at the saved total 5.5062447824952296e-06. The
-comparison total was not saved, so the size of the discrepancy is not known. The variance comparison in the same
-check passed. Floating-point cancellation is a possible explanation, not a confirmed one. The cell is a code check
-and enters no result reported in the paper; `required_checks.csv` keeps the failure and `blocked.csv` the withheld
-statistic.
+The unresolved score-total discrepancy and numerical remainder exclusions are described under
+[Simulation validation](#simulation-validation).
 
 ### Per-replicate simulation output (two archives)
 
@@ -237,7 +241,7 @@ statistic.
 | `simulation-task7-recovery.tar.gz` | 77 kB | 9 | Task 7 of P-e3-ctrl-m400 |
 
 Assemble both for the complete output. SHA-256 and md5: `config/assets.csv`.
-Download them from this repository's v1.0.0 release. Each run folder holds
+Download them from this repository's v1.1.0 release (release v1.0.0 carries the same two files). Each run folder holds
 `results.csv` (one row per replicate and arm: estimate, variance estimate, interval, remainders, status), `census.csv`
 and `census_strata.csv` (census targets), `checks.csv` (implementation checks), `timing.csv`, `t2_refinement.csv` and
 `manifest.json` (settings, identities, environment; the cluster path prefix is replaced by `<run-root>`). Run
@@ -256,6 +260,9 @@ rows. The audit counts rows, required checks, fitting failures and unresolved T�
 recomputes key estimates with plain statistics (and approximate bootstrap intervals) for comparison with `grades.csv`.
 
 ### SPA study (`results/application/`)
+
+Diagnostic and fold-recording qualifications are described under
+[SPA diagnostic and fold records](#spa-diagnostic-and-fold-records).
 
 Per survey (`MW_SPA_2013-14`, `HT_SPA_2017-18`, `HT_SPA_2013`): `resample_<survey>_f250_replicates.csv` (500
 resamples × 8 methods: estimate, standard error, degrees of freedom, interval, status),
@@ -299,6 +306,52 @@ identifier from `config/execution-identity.json` as their package identity.
 
 ## Implementation notes and limitations
 
+### Simulation validation
+
+**Score-total cross-check.** The recorded simulation evaluated 13,067,483 required implementation checks.
+One implementation check failed. In the with-replacement code-check cell `P-wr-calib`, 1 of its 112,016 required
+checks failed, in replicate 4611 of 8,000 (population 1): the total of the linearized score computed by the `survey`
+package and the direct cluster-total formula disagreed beyond the tolerance
+`1e-12 * max(abs(total_direct), 1e-300) + 1e-18`, about 6.5e-18 at the saved total 5.5062447824952296e-06. The
+comparison total was not saved, so the size of the discrepancy is not known. The variance comparison in the same
+check passed. Floating-point cancellation is a possible explanation, not a confirmed one. The cell is a code check
+and enters no result reported in the paper; `required_checks.csv` keeps the failure and `blocked.csv` the withheld
+statistic.
+
+**Remainder resolution.** When refinement is triggered, the remainder integral T₂ is evaluated along successive
+quadrature rules, subject to an evaluation cap, and accepted when successive values differ by at most 5e-7 with
+a decreasing refinement step. This is a numerical resolution rule rather than a rigorous error bound. If the
+calculation remains unresolved, T₂ and the corresponding T₁ are omitted from remainder summaries while the point
+estimate and variance estimate are retained.
+
+The recorded runs contain 80 unresolved arm-by-replicate entries, all at m ≤ 400; a sample may contribute entries
+for multiple arms. Of these entries, 47 concern R-a TMLE, whose remainders are excluded from summaries throughout.
+Counts are in [unresolved_t2_by_cell_arm.csv](results/simulation/unresolved_t2_by_cell_arm.csv). No unresolved
+entries occurred at the sample sizes used for the reported remainder benchmark comparisons.
+
+Selected pre-production calculations for R-a AIPW, the throttled learner and the aligned-error control were
+compared with independent higher-order quadrature. All 36 conclusively checked fold fits agreed within 1e-6.
+These comparisons do not establish an error bound for all fitted models. R-a TMLE remainder calculations were
+not validated in this way and are excluded from summaries and displays, although retained in the per-replicate
+output. No forest remainders were computed. Pilot execution summaries and learner-rate diagnostics are supplied
+in [results/simulation/execution-check/](results/simulation/execution-check/).
+
+### SPA diagnostic and fold records
+
+During Malawi's separate whole-frame overlap diagnostic, the message `factor educ has new levels not specified`
+was logged twice. SuperLearner's error handling can omit a failing candidate learner, so this diagnostic may use
+a reduced ensemble. The recorded notes do not identify the candidate or affected fold. The diagnostic was
+computed separately and did not enter the resampling estimates or whole-frame reference values. This repository
+supplies the resulting aggregate CSVs; the historical warning logs are not included.
+
+The application protocol requests five cross-fitting folds. The per-resample files do not record the effective
+fold count; the package's fold rule and frame counts imply five folds for the recorded samples. Facilities are
+assigned to whole-facility folds within strata, with only approximate balance. The theorem's exact divisibility
+condition is therefore not met. Settings and counts are supplied in
+[protocol.yaml](config/application/protocol.yaml) and [results/application/](results/application/).
+
+### Software and execution environment
+
 - The simulation engine is an R project written for this paper, not an installable package. It uses its own
   estimator, fold and variance code and does not call `svytmle`.
 - Production, preparation and summary runs refuse to start if any frozen input differs from
@@ -313,8 +366,6 @@ identifier from `config/execution-identity.json` as their package identity.
 - The `svytmle` build stamp `Packaged: 2026-09-24 19:40:00 UTC; wilds` includes the user name of the machine that built
   the package. It is part of the unchanged vendored file and is the pin the code enforces, so it is kept, in the
   tarball and where the runs recorded it.
-- Remainders T₁ and T₂ of the R-a TMLE arm are kept in the per-replicate output but are not used in any summary or
-  display.
 
 ## Data access and privacy
 
@@ -330,7 +381,7 @@ archives of per-replicate output) are released under the Creative Commons Attrib
 licences: `vendor/svytmle_0.1.2.tar.gz` (GPL >= 3) and `src/simulation/renv/activate.R`, the bootstrap script of renv
 (MIT). The R and Python packages that the setup scripts install are not distributed here and have their own licences.
 
-To cite these materials, cite M. Ehsan Karim (2026), Reproduction materials: design-based central limit theorem for
-cross-fitted influence functions, version v1.0.0, GitHub,
-https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.0.0. The release identifies the exact source commit.
+To cite these materials, cite M. Ehsan Karim (2026), Reproduction materials: finite-population inference for
+cross-fitted estimators of treatment contrasts in stratified multistage surveys, version v1.1.0, GitHub,
+https://github.com/ehsanx/svycf-reproducibility/releases/tag/v1.1.0. The release identifies the exact source commit.
 The paper citation above will be updated on publication. Citation metadata: `CITATION.cff`.

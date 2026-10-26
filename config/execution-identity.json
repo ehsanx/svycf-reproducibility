@@ -1,5 +1,5 @@
 {
-  "release_id": "svycf-code-v1.0.0+acdd8415bf70",
+  "release_id": "svycf-code-v1.1.0+e1a42bf104f6",
   "execution_check": {
     "commit": "19b4ae97d3b34ef0a9a993d0b70d8a7276d2b210",
     "note": "SHA-256 of every engine file the production runs hash (engine_files) and of its executable code with comments removed (engine_code, R files), at the commit whose execution check passed. This release's files have the same executable code, except the adapted ones, whose diagnostic message strings were reworded with every other token unchanged. The summary step checks output made under this release against this record.",
